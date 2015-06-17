@@ -14,19 +14,15 @@ public class Assets {
     public static SpriteBatch batch;
 
     //Non Disposables
-    public static TextureRegion bird;
-    public static TextureRegion background;
-    public static TextureRegion ground;
-    public static TextureRegion pipe;
+    public static TextureRegion ship;
+    public static TextureRegion spacebackground;
 
     public static void load(){
         atlas = new TextureAtlas("pack.atlas");
         batch = new SpriteBatch();
 
-        bird = atlas.findRegion("bird");
-        background = atlas.findRegion("background");
-        ground = atlas.findRegion("ground");
-        pipe = atlas.findRegion("pipe");
+        ship = atlas.findRegion("ship");
+        spacebackground = atlas.findRegion("spacebackground");
 
     }
 

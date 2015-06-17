@@ -1,6 +1,7 @@
 package com.infiniteloop.ride;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -8,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
+
 
 /**
  * Created by jackthebones on 12/06/15.
@@ -19,10 +21,8 @@ public class GameplayState extends ScreenAdapter {
 
     private Stage GameplayStage;
 
-    private Bird bird;
-    private Image background;
-    private Image ground;
-    private Image Pipe;
+    private Ship ship;
+    private Image spacebackground;
 
     private boolean JustTouched;
 
@@ -33,26 +33,14 @@ public class GameplayState extends ScreenAdapter {
 
         GameplayStage = new Stage(new StretchViewport(RideGame.WIDHT, RideGame.HEIGHT));
 
-        bird = new Bird();
-        background = new Image(Assets.background);
-        ground = new Image(Assets.ground);
+        ship = new Ship();
+        ship.setPosition(RideGame.WIDHT / 4, RideGame.HEIGHT / 2, Align.center);
 
+        spacebackground = new Image(Assets.spacebackground);
 
-        Pipe topPipe = new Pipe();
-        topPipe.setRotation(180);
-        topPipe.setY(RideGame.HEIGHT / 3);
+        GameplayStage.addActor(spacebackground);
+        GameplayStage.addActor(ship);
 
-        Pipe bottomPipe = new Pipe();
-
-        PipePair pair = new PipePair(topPipe, bottomPipe);
-
-        bird.setPosition(RideGame.WIDHT / 4, RideGame.HEIGHT / 2, Align.center);
-
-        GameplayStage.addActor(background);
-        GameplayStage.addActor(ground);
-        GameplayStage.addActor(bird);
-        GameplayStage.addActor(topPipe);
-        GameplayStage.addActor(bottomPipe);
 
         InitInputProcessor();
 
@@ -64,17 +52,47 @@ public class GameplayState extends ScreenAdapter {
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
                 JustTouched = true;
-                bird.Jump();
+                ship.Jump();
                 return true;
             }
         });
+
+
 
     }
 
     @Override
     public void render(float delta) {
+
+
         GameplayStage.act();
         GameplayStage.draw();
+
+        KeyMovementControls();
+        AccelerometerMovementControls();
+    }
+
+    private void KeyMovementControls() {
+        if(Gdx.input.isKeyPressed(Input.Keys.A)){
+            ship.MoveLeft();
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.D)){
+            ship.MoveRight();
+        }
+    }
+
+    private void AccelerometerMovementControls(){
+        float acceleration=Gdx.input.getAccelerometerX();
+
+        if (Math.abs(acceleration) > 0.5f){
+            if (acceleration < 0){
+                ship.MoveRight();
+            }
+            else{
+                ship.MoveLeft();
+            }
+        }
+
     }
 
     public void resize(int widht, int height){

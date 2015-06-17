@@ -11,7 +11,7 @@ import com.badlogic.gdx.utils.Align;
 /**
  * Created by jackthebones on 14/06/15.
  */
-public class Bird extends Actor {
+public class Ship extends Actor {
 
     public static final int BirdWidth = 64;
     public static final int BirdHeight = 64;
@@ -33,8 +33,8 @@ public class Bird extends Actor {
     private enum State {alive, dead};
 
 
-    public Bird() {
-        textureRegion = new TextureRegion(Assets.bird);
+    public Ship() {
+        textureRegion = new TextureRegion(Assets.ship);
         setWidth(BirdWidth);
         setHeight(BirdHeight);
 
@@ -79,14 +79,16 @@ public class Bird extends Actor {
         ApplyAcceleration(delta);
         UpdatePosition(delta);
 
-        setRotation(MathUtils.clamp(Velocity.y / JUMPVELOCITY * 45f, -90, 45));
+        //ROTACION
+
+        //setRotation(MathUtils.clamp(Velocity.y / JUMPVELOCITY * 45f, -90, 45));
 
         if (IsBelowGround()){
             //Mueve la posicion al nivel del piso y hace la colision con los pixeles
             //"botom" de la imagen
-            setY(RideGame.GROUNDLEVEL);
+            setY(0);
             //Cambia el estado del personaje a Dead.
-            state = State.dead;
+            //state = State.dead;
         }
         if (IsAboveTop()){
             //Mueve la posicion al nivel del techo y hace la colision con los pixeles
@@ -94,7 +96,7 @@ public class Bird extends Actor {
             setPosition(getX(), RideGame.TOPSCREENLEVEL, Align.topLeft);
 
             //Cambia el estado del personaje a Dead.
-            state = State.dead;
+            //state = State.dead;
         }
     }
 
@@ -103,7 +105,7 @@ public class Bird extends Actor {
     }
 
     private boolean IsBelowGround(){
-        if (getY(Align.bottom) < RideGame.GROUNDLEVEL){
+        if (getY(Align.bottom) < 0){
             return true;
         }
         else{
@@ -113,6 +115,18 @@ public class Bird extends Actor {
 
     public void Jump(){
         Velocity.y = JUMPVELOCITY;
+
+    }
+
+    public void MoveLeft(){
+
+        setX(getX() - 3);
+
+    }
+
+    public void MoveRight(){
+
+        setX(getX() + 3);
 
     }
 
