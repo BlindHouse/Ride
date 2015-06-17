@@ -22,12 +22,13 @@ public class GameplayState extends ScreenAdapter {
     private Stage GameplayStage;
 
     private Ship ship;
-    private Image spacebackground;
+    private SpaceBackground spacebackground;
 
     private boolean JustTouched;
 
     public GameplayState(RideGame game) {
         this.game = game;
+
         camera = new OrthographicCamera();
         camera.setToOrtho(false, RideGame.WIDHT, RideGame.HEIGHT);
 
@@ -36,7 +37,9 @@ public class GameplayState extends ScreenAdapter {
         ship = new Ship();
         ship.setPosition(RideGame.WIDHT / 4, RideGame.HEIGHT / 2, Align.center);
 
-        spacebackground = new Image(Assets.spacebackground);
+        //Image spacebackground = new Image(Assets.spacebackground);
+        spacebackground = new SpaceBackground();
+        spacebackground.setPosition(0,0);
 
         GameplayStage.addActor(spacebackground);
         GameplayStage.addActor(ship);

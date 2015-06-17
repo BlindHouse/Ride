@@ -1,33 +1,33 @@
 
 pack.png
-size: 512,512
+size: 512,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 bigalien
   rotate: false
-  xy: 324, 418
+  xy: 324, 932
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 ship
   rotate: false
-  xy: 324, 352
+  xy: 324, 866
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 spacebackground
   rotate: false
-  xy: 2, 2
-  size: 320, 480
-  orig: 320, 480
+  xy: 2, 36
+  size: 320, 960
+  orig: 320, 960
   offset: 0, 0
   index: -1
 tinyalien
   rotate: false
-  xy: 390, 450
+  xy: 2, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0

@@ -13,8 +13,8 @@ import com.badlogic.gdx.utils.Align;
  */
 public class Ship extends Actor {
 
-    public static final int BirdWidth = 64;
-    public static final int BirdHeight = 64;
+    public static final int ShipWidth = 64;
+    public static final int ShipHeight = 64;
 
     public static float GRAVITY = 800f;
     public static float JUMPVELOCITY = 450f;
@@ -35,8 +35,8 @@ public class Ship extends Actor {
 
     public Ship() {
         textureRegion = new TextureRegion(Assets.ship);
-        setWidth(BirdWidth);
-        setHeight(BirdHeight);
+        setWidth(ShipWidth);
+        setHeight(ShipHeight);
 
         //Inicializa el personaje como "alive"
         state = State.alive;
@@ -119,15 +119,15 @@ public class Ship extends Actor {
     }
 
     public void MoveLeft(){
-
-        setX(getX() - 3);
-
+        if(getX(Align.left) > 0) {
+            setX(getX() - 3);
+        }
     }
 
     public void MoveRight(){
-
-        setX(getX() + 3);
-
+        if(getX(Align.right) < RideGame.WIDHT) {
+            setX(getX() + 3);
+        }
     }
 
     private void UpdatePosition(float delta) {
