@@ -16,6 +16,8 @@ public class Assets {
     //Non Disposables
     public static TextureRegion ship;
     public static TextureRegion spacebackground;
+    public static TextureRegion shot;
+    public static TextureRegion alienshot;
 
     public static void load(){
         atlas = new TextureAtlas("pack.atlas");
@@ -23,6 +25,8 @@ public class Assets {
 
         ship = atlas.findRegion("ship");
         spacebackground = atlas.findRegion("spacebackground");
+        shot = atlas.findRegion("shot");
+        alienshot = atlas.findRegion("alienshot");
 
     }
 

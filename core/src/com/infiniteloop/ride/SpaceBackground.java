@@ -12,7 +12,6 @@ import com.badlogic.gdx.utils.Align;
 public class SpaceBackground extends Actor{
 
 
-    public static float GRAVITY = 800f;
     //Velocidad y aceleracion posiciones X y Y
     private Vector2 Velocity;
 

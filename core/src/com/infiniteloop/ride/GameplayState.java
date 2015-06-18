@@ -44,7 +44,6 @@ public class GameplayState extends ScreenAdapter {
         GameplayStage.addActor(spacebackground);
         GameplayStage.addActor(ship);
 
-
         InitInputProcessor();
 
     }
@@ -54,8 +53,10 @@ public class GameplayState extends ScreenAdapter {
 
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-                JustTouched = true;
-                ship.Jump();
+                //ship.Jump();
+                Shot shot = new Shot(200f);
+                shot.setPosition(ship.getX(Align.center), ship.getY(Align.top), Align.bottom);
+                GameplayStage.addActor(shot);
                 return true;
             }
         });
@@ -66,7 +67,6 @@ public class GameplayState extends ScreenAdapter {
 
     @Override
     public void render(float delta) {
-
 
         GameplayStage.act();
         GameplayStage.draw();
@@ -82,6 +82,7 @@ public class GameplayState extends ScreenAdapter {
         if(Gdx.input.isKeyPressed(Input.Keys.D)){
             ship.MoveRight();
         }
+
     }
 
     private void AccelerometerMovementControls(){
