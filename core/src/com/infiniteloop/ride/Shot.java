@@ -2,6 +2,7 @@ package com.infiniteloop.ride;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Align;
@@ -27,10 +28,20 @@ public class Shot extends Actor {
     //Posibles estados de personaje durante el juego
     private enum State {alive, dead};
 
+    private Rectangle ShotPerimeter;
+
     public Shot(float ShotDirection) {
-        textureRegion = new TextureRegion(Assets.shot);
+        if(ShotDirection > 0f){
+            textureRegion = new TextureRegion(Assets.shot);
+        }
+        if(ShotDirection < 0f){
+            textureRegion = new TextureRegion(Assets.alienshot);
+        }
         setWidth(ShotWidth);
         setHeight(ShotHeight);
+
+        ShotPerimeter = new Rectangle(0, 0, ShotWidth, ShotHeight);
+
 
         //Inicializa el personaje como "alive"
         state = State.alive;
@@ -64,6 +75,23 @@ public class Shot extends Actor {
                 Velocity = Vector2.Zero;
                 break;
         }
+
+        UpdatePerimeter();
+    }
+
+    private void UpdatePerimeter() {
+
+        ShotPerimeter.x = getX();
+        ShotPerimeter.y = getY();
+
+    }
+
+    public Rectangle getShotPerimeter() {
+        return ShotPerimeter;
+    }
+
+    public void setShotPerimeter(Rectangle shotPerimeter) {
+        ShotPerimeter = shotPerimeter;
     }
 
     private void ActAlive(float delta) {

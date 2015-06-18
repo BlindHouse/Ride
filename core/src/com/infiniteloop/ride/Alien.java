@@ -2,28 +2,23 @@ package com.infiniteloop.ride;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Align;
 
 /**
- * Created by jackthebones on 14/06/15.
+ * Created by jackthebones on 18/06/15.
  */
-public class Ship extends Actor {
+public class Alien extends Actor{
 
-    public static final int ShipWidth = 64;
-    public static final int ShipHeight = 64;
+    public static final int AlienWidth = 64;
+    public static final int AlienHeight = 64;
 
     public static float GRAVITY = 400f;
-    public static float JUMPVELOCITY = 450f;
 
     //Velocidad y aceleracion posiciones X y Y
     private Vector2 Velocity;
-    private Vector2 Acceleration;
-
 
     private TextureRegion textureRegion;
 
@@ -33,13 +28,14 @@ public class Ship extends Actor {
     //Posibles estados de personaje durante el juego
     private enum State {alive, dead}
 
-    private Rectangle ShipPerimeter;
+    private Rectangle AlienPerimeter;
 
 
-    public Ship() {
-        textureRegion = new TextureRegion(Assets.ship);
-        setWidth(ShipWidth);
-        setHeight(ShipHeight);
+    public Alien() {
+        textureRegion = new TextureRegion(Assets.alien);
+        setWidth(AlienWidth);
+        setHeight(AlienHeight);
+
 
         //Inicializa el personaje como "alive"
         state = State.alive;
@@ -48,13 +44,10 @@ public class Ship extends Actor {
         //Velocidad del personaje
         Velocity = new Vector2(0, 0);
         //Peso o gravedad del personaje
-        Acceleration = new Vector2(0, -GRAVITY);
-
-        ShipPerimeter = new Rectangle(0, 0, ShipWidth, ShipHeight);
+        AlienPerimeter = new Rectangle(0, 0, AlienWidth,AlienHeight);
 
         //Centro de rotacion del pj
-       setOrigin(Align.center);
-
+        setOrigin(Align.center);
 
     }
 
@@ -75,7 +68,6 @@ public class Ship extends Actor {
 
             case dead:
                 Velocity = Vector2.Zero;
-                Acceleration = Vector2.Zero;
                 break;
         }
 
@@ -84,21 +76,20 @@ public class Ship extends Actor {
 
     private void UpdatePerimeter() {
 
-        ShipPerimeter.x = getX();
-        ShipPerimeter.y = getY();
+        AlienPerimeter.x = getX();
+        AlienPerimeter.y = getY();
 
     }
 
-    public Rectangle getShipPerimeter() {
-        return ShipPerimeter;
+    public Rectangle getAlienPerimeter() {
+        return AlienPerimeter;
     }
 
-    public void setShipPerimeter(Rectangle shipPerimeter) {
-        ShipPerimeter = shipPerimeter;
+    public void setAlienPerimeter(Rectangle alienPerimeter) {
+        AlienPerimeter = alienPerimeter;
     }
 
     private void ActAlive(float delta) {
-        ApplyAcceleration(delta);
         UpdatePosition(delta);
 
         //ROTACION
@@ -112,45 +103,12 @@ public class Ship extends Actor {
             //Cambia el estado del personaje a Dead.
             //state = State.dead;
         }
-        if (IsAboveTop()){
-            //Mueve la posicion al nivel del techo y hace la colision con los pixeles
-            //"top" de la imagen
-            setPosition(getX(), RideGame.TOPSCREENLEVEL, Align.topLeft);
-
-            //Cambia el estado del personaje a Dead.
-            //state = State.dead;
-        }
-    }
-
-    private boolean IsAboveTop(){
-        return getY(Align.top) > RideGame.TOPSCREENLEVEL;
     }
 
     private boolean IsBelowGround(){
-        if (getY(Align.bottom) < 0){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return getY(Align.bottom) < 0;
     }
 
-    public void Jump(){
-        Velocity.y = JUMPVELOCITY;
-
-    }
-
-    public void MoveLeft(){
-        if(getX(Align.left) > 0) {
-            setX(getX() - 3);
-        }
-    }
-
-    public void MoveRight(){
-        if(getX(Align.right) < RideGame.WIDHT) {
-            setX(getX() + 3);
-        }
-    }
 
     private void UpdatePosition(float delta) {
 
@@ -161,12 +119,4 @@ public class Ship extends Actor {
         setY(getY() + Velocity.y * delta);
 
     }
-
-    private void ApplyAcceleration(float delta) {
-
-        Velocity.add(Acceleration.x * delta, Acceleration.y * delta);
-
-    }
-
-
 }
