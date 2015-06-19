@@ -30,6 +30,8 @@ public class GameplayState extends ScreenAdapter {
     private Shot shot;
     private Alien alien;
     private Kamikaze kamikaze;
+    private Bridge bridge;
+
     public static Label label;
 
     private BitmapFont font;
@@ -56,7 +58,11 @@ public class GameplayState extends ScreenAdapter {
         alien.setPosition(MathUtils.random(32, RideGame.WIDHT - 32), RideGame.HEIGHT, Align.center);
 
         kamikaze = new Kamikaze(MathUtils.random(3,10));
-        kamikaze.setPosition(MathUtils.random(32, RideGame.WIDHT - 32), RideGame.HEIGHT, Align.center);
+        kamikaze.setPosition(MathUtils.random(32, RideGame.WIDHT),
+                RideGame.HEIGHT + MathUtils.random(700,1700), Align.center);
+
+        bridge = new Bridge(MathUtils.random(1,5));
+        bridge.setPosition(RideGame.WIDHT / 2, RideGame.HEIGHT + MathUtils.random(1700,5000), Align.center);
 
         spacebackground = new SpaceBackground();
         spacebackground.setPosition(0,0);
@@ -66,6 +72,7 @@ public class GameplayState extends ScreenAdapter {
         GameplayStage.addActor(alien);
         GameplayStage.addActor(kamikaze);
         GameplayStage.addActor(label);
+        GameplayStage.addActor(bridge);
 
         InitInputProcessor();
     }
@@ -141,7 +148,7 @@ public class GameplayState extends ScreenAdapter {
         if(kamikaze != null) {
             if(ship != null){
                 if(kamikaze.getKamikazePerimeter().overlaps(ship.getShipPerimeter())){
-                    ship.HitTaken((int)(ship.CurrentLife * 0.35));
+                    ship.HitTaken((int)(ship.CurrentLife * 0.50));
                     kamikaze.state = Kamikaze.State.dead;
                     kamikaze.KAMIKAZEAMOUNT --;
                 }

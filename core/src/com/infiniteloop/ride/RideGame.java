@@ -13,8 +13,6 @@ public class RideGame extends Game {
 	public static int HEIGHT = 480;
 
 	public static int TOPSCREENLEVEL = HEIGHT;
-	public static int GROUNDLEVEL = 24;
-
 
 	@Override
 	public void create () {
