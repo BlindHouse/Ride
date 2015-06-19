@@ -128,6 +128,25 @@ public class GameplayState extends ScreenAdapter {
                 }
             }
         }
+        if(shot != null) {
+            if(kamikaze != null){
+                if(shot.getShotPerimeter().overlaps(kamikaze.getKamikazePerimeter())){
+                    shot.remove();
+                    shot.clear();
+                    shot.setShotPerimeter(new Rectangle(0, 0, -30, -30));
+                    kamikaze.HitTaken();
+                }
+            }
+        }
+        if(kamikaze != null) {
+            if(ship != null){
+                if(kamikaze.getKamikazePerimeter().overlaps(ship.getShipPerimeter())){
+                    ship.HitTaken((int)(ship.CurrentLife * 0.35));
+                    kamikaze.state = Kamikaze.State.dead;
+                    kamikaze.KAMIKAZEAMOUNT --;
+                }
+            }
+        }
     }
 
 
