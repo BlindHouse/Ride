@@ -1,21 +1,16 @@
 package com.infiniteloop.ride;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.*;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.utils.Align;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
-import java.awt.*;
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by jackthebones on 14/06/15.
@@ -69,7 +64,7 @@ public class Ship extends Actor {
         ShipPerimeter = new Rectangle(0, 0, ShipWidth, ShipHeight);
 
         //Centro de rotacion del pj
-       setOrigin(Align.center);
+        setOrigin(Align.center);
 
 
     }
@@ -86,7 +81,11 @@ public class Ship extends Actor {
 
         switch (state){
             case alive:
-                ActAlive(delta);
+                try {
+                    ActAlive(delta);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 break;
 
             case dead:
@@ -110,7 +109,8 @@ public class Ship extends Actor {
     }
     public static void HitTaken(int Hit) {
         CurrentLife = CurrentLife - Hit;
-        GameplayState.label.setText("Life : " + Ship.CurrentLife + "  " + "Score : " + Ship.CurrentScore);
+        GameplayState.label.setText("Life : " + Ship.CurrentLife + "  " + "Gas : " + Ship.CurrentGas + "  "
+                + "Score : " + Ship.CurrentScore);
         if(CurrentLife <= 0){
             state = State.dead;
         }
@@ -125,7 +125,7 @@ public class Ship extends Actor {
         ShipPerimeter = shipPerimeter;
     }
 
-    private void ActAlive(float delta) {
+    private void ActAlive(float delta) throws InterruptedException {
         ApplyAcceleration(delta);
         UpdatePosition(delta);
 
@@ -133,20 +133,30 @@ public class Ship extends Actor {
 
         //setRotation(MathUtils.clamp(Velocity.y / JUMPVELOCITY * 45f, -90, 45));
 
-        if (IsBelowGround()){
+        if (IsBelowGround()) {
             //Mueve la posicion al nivel del piso y hace la colision con los pixeles
             //"botom" de la imagen
             setY(0);
             //Cambia el estado del personaje a Dead.
             //state = State.dead;
         }
-        if (IsAboveTop()){
+        if (IsAboveTop()) {
             //Mueve la posicion al nivel del techo y hace la colision con los pixeles
             //"top" de la imagen
             setPosition(getX(), RideGame.TOPSCREENLEVEL, Align.topLeft);
 
             //Cambia el estado del personaje a Dead.
             //state = State.dead;
+        }
+        while (CurrentGas != 0) {
+            Timer timer = new Timer();
+            timer.scheduleAtFixedRate(new TimerTask() {
+                public void run() {
+                    CurrentGas = CurrentGas - 2;
+                    GameplayState.label.setText("Life : " + Ship.CurrentLife + "  " + "Gas : " + Ship.CurrentGas + "  "
+                            + "Score : " + Ship.CurrentScore);
+                }
+            }, new Date(), 1000);
         }
     }
 

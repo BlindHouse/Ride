@@ -89,7 +89,8 @@ public class Health extends Actor {
         else{
             Ship.CurrentLife = h;
         }
-        GameplayState.label.setText("Life : " + Ship.CurrentLife + "  " + "Score : " + Ship.CurrentScore);
+        GameplayState.label.setText("Life : " + Ship.CurrentLife + "  " + "Gas : " + Ship.CurrentGas + "  "
+                + "Score : " + Ship.CurrentScore);
         state = State.dead;
     }
 

@@ -84,7 +84,7 @@ public class Gas extends Actor {
     public void HitTaken() {
         Ship.CurrentGas = Ship.CurrentGas + MathUtils.random(20,50);
         GameplayState.label.setText("Life : " + Ship.CurrentLife + "  " + "Gas : " + Ship.CurrentGas + "  "
-        + "Score : " + Ship.CurrentScore);
+                + "Score : " + Ship.CurrentScore);
         state = State.dead;
     }
 

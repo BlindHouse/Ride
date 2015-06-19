@@ -83,7 +83,8 @@ public class Coins extends Actor {
 
     public void HitTaken() {
         Ship.CurrentScore = Ship.CurrentScore + MathUtils.random(1,3);
-        GameplayState.label.setText("Life : " + Ship.CurrentLife + "  " + "Score : " + Ship.CurrentScore);
+        GameplayState.label.setText("Life : " + Ship.CurrentLife + "  " + "Gas : " + Ship.CurrentGas + "  "
+                + "Score : " + Ship.CurrentScore);
         state = State.dead;
     }
 
