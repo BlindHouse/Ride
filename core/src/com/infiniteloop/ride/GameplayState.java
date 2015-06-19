@@ -1,14 +1,13 @@
 package com.infiniteloop.ride;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
-import com.badlogic.gdx.InputAdapter;
-import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 
 
@@ -20,16 +19,17 @@ public class GameplayState extends ScreenAdapter {
     public RideGame game;
     public OrthographicCamera camera;
 
-    private Stage GameplayStage;
+    public static Stage GameplayStage;
 
     private Ship ship;
     private SpaceBackground spacebackground;
-    private Alien alien;
     private Shot shot;
+    private Alien alien;
+
 
     private boolean JustTouched;
 
-    public GameplayState(RideGame game) {
+    public GameplayState(RideGame game) throws InterruptedException {
         this.game = game;
 
         camera = new OrthographicCamera();
@@ -40,19 +40,21 @@ public class GameplayState extends ScreenAdapter {
         ship = new Ship();
         ship.setPosition(RideGame.WIDHT / 2, RideGame.HEIGHT / 2, Align.center);
 
+        alien = new Alien(5);
+        alien.setPosition(MathUtils.random(32, RideGame.WIDHT - 32), RideGame.HEIGHT, Align.center);
+
         spacebackground = new SpaceBackground();
         spacebackground.setPosition(0,0);
 
-        alien = new Alien();
-        alien.setPosition(150, 240, Align.center);
+
 
         GameplayStage.addActor(spacebackground);
-        GameplayStage.addActor(alien);
         GameplayStage.addActor(ship);
+        GameplayStage.addActor(alien);
 
         InitInputProcessor();
-
     }
+
 
     private void InitInputProcessor() {
         Gdx.input.setInputProcessor(new InputAdapter(){
@@ -66,10 +68,9 @@ public class GameplayState extends ScreenAdapter {
                 return true;
             }
         });
-
-
-
     }
+
+
 
     @Override
     //RENDER DE PANTALLA --- LOOP DE RENDERIZADO POR FPS.
@@ -82,22 +83,21 @@ public class GameplayState extends ScreenAdapter {
 
         KeyMovementControls();
         AccelerometerMovementControls();
-
     }
 
     private void CheckColisions(){
         if(shot != null) {
-
-            if (shot.getShotPerimeter().overlaps(alien.getAlienPerimeter())) {
-                {
-                    alien.remove();
-                    alien.setAlienPerimeter( new Rectangle(-30, -30, 1, 1));
+            if(alien != null){
+                if(shot.getShotPerimeter().overlaps(alien.getAlienPerimeter())){
                     shot.remove();
-                    shot.setShotPerimeter( new Rectangle(-30, -30, 1, 1));
+                    shot.clear();
+                    shot.setShotPerimeter(new Rectangle(0, 0, -30, -30));
+                    alien.HitTaken();
                 }
             }
         }
     }
+
 
     private void KeyMovementControls() {
         if(Gdx.input.isKeyPressed(Input.Keys.A)){
@@ -106,7 +106,6 @@ public class GameplayState extends ScreenAdapter {
         if(Gdx.input.isKeyPressed(Input.Keys.D)){
             ship.MoveRight();
         }
-
     }
 
     private void AccelerometerMovementControls(){
@@ -120,7 +119,6 @@ public class GameplayState extends ScreenAdapter {
                 ship.MoveLeft();
             }
         }
-
     }
 
     public void resize(int widht, int height){

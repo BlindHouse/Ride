@@ -10,7 +10,7 @@ import com.badlogic.gdx.utils.Align;
 /**
  * Created by jackthebones on 17/06/15.
  */
-public class Shot extends Actor {
+public class AlienShot extends Actor {
 
     public static final int ShotWidth = 4;
     public static final int ShotHeight = 15;
@@ -25,11 +25,11 @@ public class Shot extends Actor {
     //Estado del personaje
     private State state;
     //Posibles estados de personaje durante el juego
-    private enum State {alive, dead};
+    private enum State {alive, dead}
 
-    private Rectangle ShotPerimeter;
+    private Rectangle AlienShotPerimeter;
 
-    public Shot(float ShotDirection) {
+    public AlienShot(float ShotDirection) {
         if(ShotDirection > 0f){
             textureRegion = new TextureRegion(Assets.shot);
         }
@@ -39,7 +39,7 @@ public class Shot extends Actor {
         setWidth(ShotWidth);
         setHeight(ShotHeight);
 
-        ShotPerimeter = new Rectangle(0, 0, ShotWidth, ShotHeight);
+        AlienShotPerimeter = new Rectangle(0, 0, ShotWidth, ShotHeight);
 
 
         //Inicializa el personaje como "alive"
@@ -80,17 +80,17 @@ public class Shot extends Actor {
 
     private void UpdatePerimeter() {
 
-        ShotPerimeter.x = getX();
-        ShotPerimeter.y = getY();
+        AlienShotPerimeter.x = getX();
+        AlienShotPerimeter.y = getY();
 
     }
 
-    public Rectangle getShotPerimeter() {
-        return ShotPerimeter;
+    public Rectangle getAlienShotPerimeter() {
+        return AlienShotPerimeter;
     }
 
-    public void setShotPerimeter(Rectangle shotPerimeter) {
-        ShotPerimeter = shotPerimeter;
+    public void setAlienShotPerimeter(Rectangle alienShotPerimeter) {
+        AlienShotPerimeter = alienShotPerimeter;
     }
 
     private void ActAlive(float delta) {
@@ -105,19 +105,8 @@ public class Shot extends Actor {
             //Cambia el estado del personaje a Dead.
             //state = State.dead;
         }
-        if (IsAboveTop()){
-            //Mueve la posicion al nivel del techo y hace la colision con los pixeles
-            //"top" de la imagen
-            remove();
-            //Cambia el estado del personaje a Dead.
-            //state = State.dead;
-        }
     }
 
-    private boolean IsAboveTop(){
-
-        return getY(Align.bottom) > RideGame.HEIGHT;
-    }
 
     private boolean IsBelowGround(){
         if (getY(Align.top) < 0){

@@ -19,7 +19,11 @@ public class RideGame extends Game {
 	@Override
 	public void create () {
 		Assets.load();
-		setScreen(new GameplayState(this));
+		try {
+			setScreen(new GameplayState(this));
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override

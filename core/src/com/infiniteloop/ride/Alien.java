@@ -2,6 +2,7 @@ package com.infiniteloop.ride;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -22,16 +23,23 @@ public class Alien extends Actor{
 
     private TextureRegion textureRegion;
 
+    private int AlienLifePoints = MathUtils.random(1,4);
+    private int ALIENAMOUNT;
+
 
     //Estado del personaje
     private State state;
+
     //Posibles estados de personaje durante el juego
     private enum State {alive, dead}
 
     private Rectangle AlienPerimeter;
 
 
-    public Alien() {
+    public Alien(int AlienAmount) {
+
+        ALIENAMOUNT = AlienAmount;
+
         textureRegion = new TextureRegion(Assets.alien);
         setWidth(AlienWidth);
         setHeight(AlienHeight);
@@ -42,7 +50,7 @@ public class Alien extends Actor{
 
         //Variables de movimiento del personaje
         //Velocidad del personaje
-        Velocity = new Vector2(0, 0);
+        Velocity = new Vector2(0, -150f);
         //Peso o gravedad del personaje
         AlienPerimeter = new Rectangle(0, 0, AlienWidth,AlienHeight);
 
@@ -67,11 +75,41 @@ public class Alien extends Actor{
                 break;
 
             case dead:
-                Velocity = Vector2.Zero;
+                DeadRise();
                 break;
         }
 
         UpdatePerimeter();
+    }
+
+    public void DeadRise(){
+        if (ALIENAMOUNT != 0){
+            AlienLifePoints = MathUtils.random(1,4);
+            setPosition(MathUtils.random(32, RideGame.WIDHT),
+                    RideGame.HEIGHT + MathUtils.random(35,170), Align.center);
+            state = State.alive;
+        }
+        else{
+            remove();
+            clear();
+            setAlienPerimeter(new Rectangle(0, 0, -30, -30));
+        }
+
+
+    }
+
+    public void HitTaken() {
+
+        AlienLifePoints--;
+        if(ALIENAMOUNT != 0){
+            if(AlienLifePoints == 0){
+                state = State.dead;
+                ALIENAMOUNT--;
+            }
+        }
+
+
+
     }
 
     private void UpdatePerimeter() {
@@ -80,6 +118,8 @@ public class Alien extends Actor{
         AlienPerimeter.y = getY();
 
     }
+
+
 
     public Rectangle getAlienPerimeter() {
         return AlienPerimeter;
@@ -99,14 +139,19 @@ public class Alien extends Actor{
         if (IsBelowGround()){
             //Mueve la posicion al nivel del piso y hace la colision con los pixeles
             //"botom" de la imagen
-            setY(0);
+            ResetAlien();
             //Cambia el estado del personaje a Dead.
             //state = State.dead;
         }
     }
 
     private boolean IsBelowGround(){
-        return getY(Align.bottom) < 0;
+        return getY(Align.top) < 0;
+    }
+
+    private void ResetAlien(){
+        setPosition(MathUtils.random(32, RideGame.WIDHT),
+                RideGame.HEIGHT + MathUtils.random(35,170), Align.center);
     }
 
 
