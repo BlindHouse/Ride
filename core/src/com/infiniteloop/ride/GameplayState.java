@@ -51,7 +51,7 @@ public class GameplayState extends ScreenAdapter {
         ship = new Ship();
         ship.setPosition(RideGame.WIDHT / 2, RideGame.HEIGHT / 2, Align.center);
 
-        alien = new Alien(5);
+        alien = new Alien(40);
         alien.setPosition(MathUtils.random(32, RideGame.WIDHT - 32), RideGame.HEIGHT, Align.center);
 
         spacebackground = new SpaceBackground();
@@ -117,7 +117,7 @@ public class GameplayState extends ScreenAdapter {
         if(alien != null) {
             if(ship != null){
                 if(alien.getAlienPerimeter().overlaps(ship.getShipPerimeter())){
-                    ship.HitTaken(alien.AlienLifePoints);
+                    ship.HitTaken(alien.AlienLifePoints * 2);
                     alien.state = Alien.State.dead;
                     alien.ALIENAMOUNT --;
                 }

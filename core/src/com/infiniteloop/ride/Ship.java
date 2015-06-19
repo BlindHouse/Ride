@@ -88,12 +88,16 @@ public class Ship extends Actor {
                 break;
 
             case dead:
-                Velocity = Vector2.Zero;
-                Acceleration = Vector2.Zero;
+                GameOver();
                 break;
         }
 
         UpdatePerimeter();
+    }
+
+    private void GameOver() {
+        //Todo CODE OF GAME OVER HER HER HERW HER SDFNSD
+        System.out.println("GAME OVER");
     }
 
     private void UpdatePerimeter() {
