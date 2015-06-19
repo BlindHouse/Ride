@@ -39,7 +39,10 @@ public class Ship extends Actor {
     private BitmapFont font;
 
     //Estado del personaje
-    private State state;
+    public static State state;
+
+
+
     //Posibles estados de personaje durante el juego
     private enum State {alive, dead}
 
@@ -97,6 +100,14 @@ public class Ship extends Actor {
 
         ShipPerimeter.x = getX();
         ShipPerimeter.y = getY();
+
+    }
+    public static void HitTaken(int Hit) {
+        CurrentLife = CurrentLife - Hit;
+        GameplayState.label.setText("Life : " + Ship.CurrentLife);
+        if(CurrentLife <= 0){
+            state = State.dead;
+        }
 
     }
 

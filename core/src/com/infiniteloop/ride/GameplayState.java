@@ -29,7 +29,7 @@ public class GameplayState extends ScreenAdapter {
     private SpaceBackground spacebackground;
     private Shot shot;
     private Alien alien;
-    private Label label;
+    public static Label label;
 
     private BitmapFont font;
 
@@ -74,10 +74,6 @@ public class GameplayState extends ScreenAdapter {
                 //ship.Jump();
                 shot = new Shot(200f);
                 shot.setPosition(ship.getX(Align.center), ship.getY(Align.top), Align.bottom);
-                label.remove();
-                label.clear();
-                label = new Label("Life : " + (Ship.CurrentLife - 3), new Label.LabelStyle(font, Color.WHITE));
-                GameplayStage.addActor(label);
                 GameplayStage.addActor(shot);
                 return true;
             }
@@ -112,7 +108,7 @@ public class GameplayState extends ScreenAdapter {
         }
         if(Alien.alienShot != null){
             if(Alien.alienShot.getAlienShotPerimeter().overlaps(ship.getShipPerimeter())){
-                //todo KILL SHIP
+                Ship.HitTaken(2);
             }
         }
     }
