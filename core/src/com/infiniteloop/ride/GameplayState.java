@@ -108,7 +108,19 @@ public class GameplayState extends ScreenAdapter {
         }
         if(Alien.alienShot != null){
             if(Alien.alienShot.getAlienShotPerimeter().overlaps(ship.getShipPerimeter())){
+                Alien.alienShot.remove();
+                Alien.alienShot.clear();
+                Alien.alienShot.setAlienShotPerimeter(new Rectangle(0, 0, -30, -30));
                 Ship.HitTaken(2);
+            }
+        }
+        if(alien != null) {
+            if(ship != null){
+                if(alien.getAlienPerimeter().overlaps(ship.getShipPerimeter())){
+                    ship.HitTaken(alien.AlienLifePoints);
+                    alien.state = Alien.State.dead;
+                    alien.setAlienPerimeter(new Rectangle(0, 0, -30, -30));
+                }
             }
         }
     }

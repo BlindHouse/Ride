@@ -23,15 +23,15 @@ public class Alien extends Actor{
 
     private TextureRegion textureRegion;
 
-    private int AlienLifePoints = MathUtils.random(1,4);
+    public static int AlienLifePoints = MathUtils.random(1,4);
     private int ALIENAMOUNT;
 
 
     //Estado del personaje
-    private State state;
+    public State state;
 
     //Posibles estados de personaje durante el juego
-    private enum State {alive, dead}
+    public enum State {alive, dead}
 
     private Rectangle AlienPerimeter;
 
