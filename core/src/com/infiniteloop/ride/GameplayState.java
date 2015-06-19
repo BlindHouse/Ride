@@ -29,6 +29,7 @@ public class GameplayState extends ScreenAdapter {
     private SpaceBackground spacebackground;
     private Shot shot;
     private Alien alien;
+    private Kamikaze kamikaze;
     public static Label label;
 
     private BitmapFont font;
@@ -54,12 +55,16 @@ public class GameplayState extends ScreenAdapter {
         alien = new Alien(40);
         alien.setPosition(MathUtils.random(32, RideGame.WIDHT - 32), RideGame.HEIGHT, Align.center);
 
+        kamikaze = new Kamikaze(MathUtils.random(3,10));
+        kamikaze.setPosition(MathUtils.random(32, RideGame.WIDHT - 32), RideGame.HEIGHT, Align.center);
+
         spacebackground = new SpaceBackground();
         spacebackground.setPosition(0,0);
 
         GameplayStage.addActor(spacebackground);
         GameplayStage.addActor(ship);
         GameplayStage.addActor(alien);
+        GameplayStage.addActor(kamikaze);
         GameplayStage.addActor(label);
 
         InitInputProcessor();
