@@ -35,6 +35,7 @@ public class Alien extends Actor{
 
     private Rectangle AlienPerimeter;
 
+    private AlienShot alienShot = new AlienShot(-300f);
 
     public Alien(int AlienAmount) {
 
@@ -50,7 +51,7 @@ public class Alien extends Actor{
 
         //Variables de movimiento del personaje
         //Velocidad del personaje
-        Velocity = new Vector2(0, -150f);
+        Velocity = new Vector2(0, -100f);
         //Peso o gravedad del personaje
         AlienPerimeter = new Rectangle(0, 0, AlienWidth,AlienHeight);
 
@@ -132,10 +133,6 @@ public class Alien extends Actor{
     private void ActAlive(float delta) {
         UpdatePosition(delta);
 
-        //ROTACION
-
-        //setRotation(MathUtils.clamp(Velocity.y / JUMPVELOCITY * 45f, -90, 45));
-
         if (IsBelowGround()){
             //Mueve la posicion al nivel del piso y hace la colision con los pixeles
             //"botom" de la imagen
@@ -143,11 +140,22 @@ public class Alien extends Actor{
             //Cambia el estado del personaje a Dead.
             //state = State.dead;
         }
+
+        if(IsInShootingPosition()){
+            alienShot.setPosition(getX(Align.center), getY(Align.bottom), Align.top);
+            GameplayState.GameplayStage.addActor(alienShot);
+        }
+    }
+
+    private boolean IsInShootingPosition() {
+        return getY(Align.top) < RideGame.HEIGHT - 180;
     }
 
     private boolean IsBelowGround(){
         return getY(Align.top) < 0;
     }
+
+
 
     private void ResetAlien(){
         setPosition(MathUtils.random(32, RideGame.WIDHT),
