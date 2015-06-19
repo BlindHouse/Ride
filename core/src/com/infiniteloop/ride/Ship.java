@@ -148,24 +148,6 @@ public class Ship extends Actor {
             //Cambia el estado del personaje a Dead.
             //state = State.dead;
         }
-        if(state != State.dead){
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    while(CurrentGas != 0){
-                        CurrentGas = CurrentGas - 3;
-                        try {
-                            Thread.sleep(1000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                        if(CurrentGas == 0){
-                            state = State.dead;
-                        }
-                    }
-                }
-            }).start();
-        }
     }
 
     private boolean IsAboveTop(){
