@@ -27,6 +27,7 @@ public class Ship extends Actor {
 
     public static float GRAVITY = 400f;
     public static float JUMPVELOCITY = 450f;
+    public static int CurrentScore = 0;
 
     //Velocidad y aceleracion posiciones X y Y
     private Vector2 Velocity;
@@ -108,7 +109,7 @@ public class Ship extends Actor {
     }
     public static void HitTaken(int Hit) {
         CurrentLife = CurrentLife - Hit;
-        GameplayState.label.setText("Life : " + Ship.CurrentLife);
+        GameplayState.label.setText("Life : " + Ship.CurrentLife + "  " + "Score : " + Ship.CurrentScore);
         if(CurrentLife <= 0){
             state = State.dead;
         }

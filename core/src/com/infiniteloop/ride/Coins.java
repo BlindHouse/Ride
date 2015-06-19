@@ -9,19 +9,17 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Align;
 
 /**
- * Created by jackthebones on 18/06/15.
+ * Created by jackthebones on 19/06/15.
  */
-public class Bridge extends Actor{
-    public static final int BridgeWidth = RideGame.WIDHT;
-    public static final int BridgeHeight = 30;
+public class Coins extends Actor {
+
+    public static final int CoinWidth = 25;
+    public static final int CoinHeight = 25;
 
     //Velocidad y aceleracion posiciones X y Y
     private Vector2 Velocity;
 
     private TextureRegion textureRegion;
-
-    public static int BridgeLifePoints = MathUtils.random(1, 15);
-    public int BRIDGEAMOUNT;
 
 
     //Estado del personaje
@@ -30,15 +28,13 @@ public class Bridge extends Actor{
     //Posibles estados de personaje durante el juego
     public enum State {alive, dead}
 
-    private Rectangle BridgePerimeter;
+    private Rectangle CoinPerimeter;
 
-    public Bridge(int BridgeAmount) {
+    public Coins() {
 
-        BRIDGEAMOUNT = BridgeAmount;
-
-        textureRegion = new TextureRegion(Assets.bridge);
-        setWidth(BridgeWidth);
-        setHeight(BridgeHeight);
+        textureRegion = new TextureRegion(Assets.kamikaze);
+        setWidth(CoinWidth);
+        setHeight(CoinHeight);
 
 
         //Inicializa el personaje como "alive"
@@ -46,9 +42,9 @@ public class Bridge extends Actor{
 
         //Variables de movimiento del personaje
         //Velocidad del personaje
-        Velocity = new Vector2(0, -20f);
+        Velocity = new Vector2(0, -90f);
         //Peso o gravedad del personaje
-        BridgePerimeter = new Rectangle(0, 0, BridgeWidth, BridgeHeight);
+        CoinPerimeter = new Rectangle(0, 0, CoinWidth, CoinHeight);
 
         //Centro de rotacion del pj
         setOrigin(Align.center);
@@ -79,49 +75,40 @@ public class Bridge extends Actor{
     }
 
     public void DeadRise(){
-        if (BRIDGEAMOUNT != 0){
-            BridgeLifePoints = MathUtils.random(1,2);
-            setPosition(RideGame.WIDHT / 2, RideGame.HEIGHT + MathUtils.random(1700,5000), Align.center);
-            state = State.alive;
-        }
-        else{
-            remove();
-            clear();
-            setBridgePerimeter(new Rectangle(0, 0, -30, -30));
-        }
+
+        setPosition(MathUtils.random(32, RideGame.WIDHT),
+                    RideGame.HEIGHT + MathUtils.random(50,100), Align.center);
+        state = State.alive;
     }
 
     public void HitTaken() {
-
-        BridgeLifePoints--;
-        if(BRIDGEAMOUNT != 0){
-            if(BridgeLifePoints == 0){
-                state = State.dead;
-                BRIDGEAMOUNT--;
-            }
-        }
+        Ship.CurrentScore ++;
+        GameplayState.label.setText("Life : " + Ship.CurrentLife + "  " + "Score : " + Ship.CurrentScore);
+        state = State.dead;
     }
+
+
 
     private void UpdatePerimeter() {
 
-        BridgePerimeter.x = getX();
-        BridgePerimeter.y = getY();
+        CoinPerimeter.x = getX();
+        CoinPerimeter.y = getY();
 
     }
 
-    public Rectangle getBridgePerimeter() {
-        return BridgePerimeter;
+    public Rectangle getCoinPerimeter() {
+        return CoinPerimeter;
     }
 
-    public void setBridgePerimeter(Rectangle bridgePerimeter) {
-        BridgePerimeter = bridgePerimeter;
+    public void setCoinPerimeter(Rectangle coinPerimeter) {
+        CoinPerimeter = coinPerimeter;
     }
 
     private void ActAlive(float delta) {
         UpdatePosition(delta);
 
         if (IsBelowGround()){
-            ResetBridge();
+            ResetKamikaze();
         }
     }
 
@@ -131,8 +118,9 @@ public class Bridge extends Actor{
     }
 
 
-    private void ResetBridge(){
-        setPosition(RideGame.WIDHT / 2, RideGame.HEIGHT + MathUtils.random(1700,5000), Align.center);
+    private void ResetKamikaze(){
+        setPosition(MathUtils.random(32, RideGame.WIDHT),
+                RideGame.HEIGHT + MathUtils.random(50,100), Align.center);
     }
 
 
@@ -144,4 +132,5 @@ public class Bridge extends Actor{
         setY(getY() + Velocity.y * delta);
 
     }
+
 }
