@@ -77,12 +77,18 @@ public class Gas extends Actor {
     public void DeadRise(){
 
         setPosition(MathUtils.random(32, RideGame.WIDHT),
-                RideGame.HEIGHT + MathUtils.random(150,200), Align.center);
+                RideGame.HEIGHT + MathUtils.random(900,1200), Align.center);
         state = State.alive;
     }
 
     public void HitTaken() {
-        Ship.CurrentGas = Ship.CurrentGas + MathUtils.random(20,50);
+        int h = MathUtils.random(10,15);
+        if((Ship.CurrentGas + h) >= 100 ){
+            Ship.CurrentGas = 100;
+        }
+        else{
+            Ship.CurrentGas = Ship.CurrentGas + h;
+        }
         GameplayState.label.setText("Life : " + Ship.CurrentLife + "  " + "Gas : " + Ship.CurrentGas + "  "
                 + "Score : " + Ship.CurrentScore);
         state = State.dead;
@@ -121,7 +127,7 @@ public class Gas extends Actor {
 
     private void ResetGas(){
         setPosition(MathUtils.random(32, RideGame.WIDHT),
-                RideGame.HEIGHT + MathUtils.random(150,200), Align.center);
+                RideGame.HEIGHT + MathUtils.random(900,1200), Align.center);
     }
 
 
