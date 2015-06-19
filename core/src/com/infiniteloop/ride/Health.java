@@ -77,7 +77,7 @@ public class Health extends Actor {
     public void DeadRise(){
 
         setPosition(MathUtils.random(32, RideGame.WIDHT),
-                RideGame.HEIGHT + MathUtils.random(500,1000), Align.center);
+                RideGame.HEIGHT + MathUtils.random(1800,2000), Align.center);
         state = State.alive;
     }
 
@@ -127,7 +127,7 @@ public class Health extends Actor {
 
     private void ResetHealth(){
         setPosition(MathUtils.random(32, RideGame.WIDHT),
-                RideGame.HEIGHT + MathUtils.random(500,1000), Align.center);
+                RideGame.HEIGHT + MathUtils.random(1800,2000), Align.center);
     }
 
 

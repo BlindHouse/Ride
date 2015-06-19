@@ -77,7 +77,7 @@ public class Gas extends Actor {
     public void DeadRise(){
 
         setPosition(MathUtils.random(32, RideGame.WIDHT),
-                RideGame.HEIGHT + MathUtils.random(900,1200), Align.center);
+                RideGame.HEIGHT + MathUtils.random(600,800), Align.center);
         state = State.alive;
     }
 
@@ -127,7 +127,7 @@ public class Gas extends Actor {
 
     private void ResetGas(){
         setPosition(MathUtils.random(32, RideGame.WIDHT),
-                RideGame.HEIGHT + MathUtils.random(900,1200), Align.center);
+                RideGame.HEIGHT + MathUtils.random(600,800), Align.center);
     }
 
 
