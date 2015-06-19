@@ -35,7 +35,7 @@ public class Alien extends Actor{
 
     private Rectangle AlienPerimeter;
 
-    private AlienShot alienShot = new AlienShot(-300f);
+    public AlienShot alienShot = new AlienShot(-250f);
 
     public Alien(int AlienAmount) {
 
@@ -51,7 +51,7 @@ public class Alien extends Actor{
 
         //Variables de movimiento del personaje
         //Velocidad del personaje
-        Velocity = new Vector2(0, -100f);
+        Velocity = new Vector2(0, -75f);
         //Peso o gravedad del personaje
         AlienPerimeter = new Rectangle(0, 0, AlienWidth,AlienHeight);
 
@@ -142,13 +142,23 @@ public class Alien extends Actor{
         }
 
         if(IsInShootingPosition()){
-            alienShot.setPosition(getX(Align.center), getY(Align.bottom), Align.top);
-            GameplayState.GameplayStage.addActor(alienShot);
+            System.out.println("THERE");
+            AlienFire();
         }
     }
 
+    private void AlienFire(){
+        alienShot.setPosition(getX(Align.center), getY(Align.bottom), Align.top);
+        GameplayState.GameplayStage.addActor(alienShot);
+    }
+
     private boolean IsInShootingPosition() {
-        return getY(Align.top) < RideGame.HEIGHT - 180;
+        if(getY(Align.bottom) < RideGame.HEIGHT - 150 && getY(Align.bottom) > RideGame.HEIGHT - 155){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     private boolean IsBelowGround(){
