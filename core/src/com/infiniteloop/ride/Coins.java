@@ -32,7 +32,7 @@ public class Coins extends Actor {
 
     public Coins() {
 
-        textureRegion = new TextureRegion(Assets.kamikaze);
+        textureRegion = new TextureRegion(Assets.coin);
         setWidth(CoinWidth);
         setHeight(CoinHeight);
 
@@ -42,7 +42,7 @@ public class Coins extends Actor {
 
         //Variables de movimiento del personaje
         //Velocidad del personaje
-        Velocity = new Vector2(0, -90f);
+        Velocity = new Vector2(0, -150f);
         //Peso o gravedad del personaje
         CoinPerimeter = new Rectangle(0, 0, CoinWidth, CoinHeight);
 
@@ -82,7 +82,7 @@ public class Coins extends Actor {
     }
 
     public void HitTaken() {
-        Ship.CurrentScore ++;
+        Ship.CurrentScore = Ship.CurrentScore + MathUtils.random(1,3);
         GameplayState.label.setText("Life : " + Ship.CurrentLife + "  " + "Score : " + Ship.CurrentScore);
         state = State.dead;
     }
@@ -108,7 +108,7 @@ public class Coins extends Actor {
         UpdatePosition(delta);
 
         if (IsBelowGround()){
-            ResetKamikaze();
+            ResetCoin();
         }
     }
 
@@ -118,7 +118,7 @@ public class Coins extends Actor {
     }
 
 
-    private void ResetKamikaze(){
+    private void ResetCoin(){
         setPosition(MathUtils.random(32, RideGame.WIDHT),
                 RideGame.HEIGHT + MathUtils.random(50,100), Align.center);
     }

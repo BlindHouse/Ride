@@ -6,49 +6,56 @@ filter: Nearest,Nearest
 repeat: none
 alienshot
   rotate: false
-  xy: 2, 2
+  xy: 304, 44
   size: 4, 15
   orig: 4, 15
   offset: 0, 0
   index: -1
 bigalien
   rotate: false
-  xy: 324, 947
+  xy: 324, 957
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 bridge
   rotate: false
-  xy: 2, 19
+  xy: 2, 29
   size: 300, 30
   orig: 300, 30
   offset: 0, 0
   index: -1
+coin
+  rotate: false
+  xy: 2, 2
+  size: 25, 25
+  orig: 25, 25
+  offset: 0, 0
+  index: -1
 ship
   rotate: false
-  xy: 324, 881
+  xy: 324, 891
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 shot
   rotate: false
-  xy: 304, 34
+  xy: 324, 874
   size: 4, 15
   orig: 4, 15
   offset: 0, 0
   index: -1
 spacebackground
   rotate: false
-  xy: 2, 51
+  xy: 2, 61
   size: 320, 960
   orig: 320, 960
   offset: 0, 0
   index: -1
 tinyalien
   rotate: false
-  xy: 390, 979
+  xy: 390, 989
   size: 32, 32
   orig: 32, 32
   offset: 0, 0

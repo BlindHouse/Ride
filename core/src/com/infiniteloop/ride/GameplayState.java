@@ -80,6 +80,7 @@ public class GameplayState extends ScreenAdapter {
         GameplayStage.addActor(alien);
         GameplayStage.addActor(kamikaze);
         GameplayStage.addActor(label);
+        GameplayStage.addActor(coin);
 
 
         InitInputProcessor();
