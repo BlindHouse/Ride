@@ -34,6 +34,7 @@ public class Ship extends Actor {
     private Vector2 Acceleration;
 
     public static int CurrentLife = 100;
+    public static int CurrentGas = 100;
 
     private TextureRegion textureRegion;
 

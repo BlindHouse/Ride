@@ -8,10 +8,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
-import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 
 
@@ -33,6 +31,7 @@ public class GameplayState extends ScreenAdapter {
     private Bridge bridge;
     private Health health;
     private Coins coin;
+    private Gas gas;
 
     public static Label label;
 
@@ -50,7 +49,8 @@ public class GameplayState extends ScreenAdapter {
         font = new BitmapFont();
         font.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 
-        label = new Label("Life : " + Ship.CurrentLife, new Label.LabelStyle(font, Color.WHITE));
+        label = new Label("Life : " + Ship.CurrentLife + "  " + "Gas : " + Ship.CurrentGas + "  "
+                + "Score : " + Ship.CurrentScore, new Label.LabelStyle(font, Color.WHITE));
         label.setPosition(10,10);
 
         ship = new Ship();
@@ -74,6 +74,10 @@ public class GameplayState extends ScreenAdapter {
         health.setPosition(MathUtils.random(32, RideGame.WIDHT),
                 RideGame.HEIGHT + MathUtils.random(500, 1000), Align.center);
 
+        gas = new Gas();
+        gas.setPosition(MathUtils.random(32, RideGame.WIDHT),
+                RideGame.HEIGHT + MathUtils.random(500, 1000), Align.center);
+
 
         spacebackground = new SpaceBackground();
         spacebackground.setPosition(0,0);
@@ -85,6 +89,7 @@ public class GameplayState extends ScreenAdapter {
         GameplayStage.addActor(kamikaze);
         GameplayStage.addActor(label);
         GameplayStage.addActor(coin);
+        GameplayStage.addActor(gas);
         GameplayStage.addActor(health);
 
 
@@ -225,6 +230,13 @@ public class GameplayState extends ScreenAdapter {
             if(ship != null){
                 if(health.getHealthPerimeter().overlaps(ship.getShipPerimeter())){
                     health.HitTaken();
+                }
+            }
+        }
+        if(gas != null) {
+            if(ship != null){
+                if(gas.getGasPerimeter().overlaps(ship.getShipPerimeter())){
+                    gas.HitTaken();
                 }
             }
         }
