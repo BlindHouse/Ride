@@ -46,7 +46,7 @@ public class GameplayState extends ScreenAdapter {
         font.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
 
         label = new Label("Life : " + Ship.CurrentLife, new Label.LabelStyle(font, Color.WHITE));
-        label.setPosition(10, Gdx.graphics.getHeight() * 0.9f);
+        label.setPosition(10,10);
 
         ship = new Ship();
         ship.setPosition(RideGame.WIDHT / 2, RideGame.HEIGHT / 2, Align.center);
