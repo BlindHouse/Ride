@@ -82,7 +82,13 @@ public class Health extends Actor {
     }
 
     public void HitTaken() {
-        Ship.CurrentLife = Ship.CurrentLife + MathUtils.random(10,30);
+        int h = Ship.CurrentLife + MathUtils.random(10,30);
+        if(h > 100){
+            Ship.CurrentLife = 100;
+        }
+        else{
+            Ship.CurrentLife = h;
+        }
         GameplayState.label.setText("Life : " + Ship.CurrentLife + "  " + "Score : " + Ship.CurrentScore);
         state = State.dead;
     }
@@ -130,7 +136,5 @@ public class Health extends Actor {
         //pasandole la ubicacion en el momento + añadiendole las variables del
         //cambio de posicion.
         setY(getY() + Velocity.y * delta);
-
     }
-
 }
