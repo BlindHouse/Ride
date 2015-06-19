@@ -1,11 +1,15 @@
 package com.infiniteloop.ride;
 
 import com.badlogic.gdx.*;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
@@ -25,9 +29,10 @@ public class GameplayState extends ScreenAdapter {
     private SpaceBackground spacebackground;
     private Shot shot;
     private Alien alien;
+    private Label label;
 
+    private BitmapFont font;
 
-    private boolean JustTouched;
 
     public GameplayState(RideGame game) throws InterruptedException {
         this.game = game;
@@ -36,6 +41,12 @@ public class GameplayState extends ScreenAdapter {
         camera.setToOrtho(false, RideGame.WIDHT, RideGame.HEIGHT);
 
         GameplayStage = new Stage(new StretchViewport(RideGame.WIDHT, RideGame.HEIGHT));
+
+        font = new BitmapFont();
+        font.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+
+        label = new Label("Life : " + Ship.CurrentLife, new Label.LabelStyle(font, Color.WHITE));
+        label.setPosition(10, Gdx.graphics.getHeight() * 0.9f);
 
         ship = new Ship();
         ship.setPosition(RideGame.WIDHT / 2, RideGame.HEIGHT / 2, Align.center);
@@ -46,11 +57,10 @@ public class GameplayState extends ScreenAdapter {
         spacebackground = new SpaceBackground();
         spacebackground.setPosition(0,0);
 
-
-
         GameplayStage.addActor(spacebackground);
         GameplayStage.addActor(ship);
         GameplayStage.addActor(alien);
+        GameplayStage.addActor(label);
 
         InitInputProcessor();
     }
@@ -64,6 +74,10 @@ public class GameplayState extends ScreenAdapter {
                 //ship.Jump();
                 shot = new Shot(200f);
                 shot.setPosition(ship.getX(Align.center), ship.getY(Align.top), Align.bottom);
+                label.remove();
+                label.clear();
+                label = new Label("Life : " + (Ship.CurrentLife - 3), new Label.LabelStyle(font, Color.WHITE));
+                GameplayStage.addActor(label);
                 GameplayStage.addActor(shot);
                 return true;
             }
@@ -94,6 +108,11 @@ public class GameplayState extends ScreenAdapter {
                     shot.setShotPerimeter(new Rectangle(0, 0, -30, -30));
                     alien.HitTaken();
                 }
+            }
+        }
+        if(Alien.alienShot != null){
+            if(Alien.alienShot.getAlienShotPerimeter().overlaps(ship.getShipPerimeter())){
+                //todo KILL SHIP
             }
         }
     }

@@ -35,7 +35,7 @@ public class Alien extends Actor{
 
     private Rectangle AlienPerimeter;
 
-    public AlienShot alienShot = new AlienShot(-250f);
+    public static AlienShot alienShot = new AlienShot(-250f);
 
     public Alien(int AlienAmount) {
 
@@ -95,8 +95,6 @@ public class Alien extends Actor{
             clear();
             setAlienPerimeter(new Rectangle(0, 0, -30, -30));
         }
-
-
     }
 
     public void HitTaken() {
@@ -108,9 +106,6 @@ public class Alien extends Actor{
                 ALIENAMOUNT--;
             }
         }
-
-
-
     }
 
     private void UpdatePerimeter() {
@@ -119,8 +114,6 @@ public class Alien extends Actor{
         AlienPerimeter.y = getY();
 
     }
-
-
 
     public Rectangle getAlienPerimeter() {
         return AlienPerimeter;
@@ -134,15 +127,10 @@ public class Alien extends Actor{
         UpdatePosition(delta);
 
         if (IsBelowGround()){
-            //Mueve la posicion al nivel del piso y hace la colision con los pixeles
-            //"botom" de la imagen
             ResetAlien();
-            //Cambia el estado del personaje a Dead.
-            //state = State.dead;
         }
 
         if(IsInShootingPosition()){
-            System.out.println("THERE");
             AlienFire();
         }
     }

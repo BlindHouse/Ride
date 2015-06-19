@@ -1,13 +1,21 @@
 package com.infiniteloop.ride;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.*;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+
+import java.awt.*;
 
 /**
  * Created by jackthebones on 14/06/15.
@@ -24,9 +32,11 @@ public class Ship extends Actor {
     private Vector2 Velocity;
     private Vector2 Acceleration;
 
+    public static int CurrentLife = 100;
 
     private TextureRegion textureRegion;
 
+    private BitmapFont font;
 
     //Estado del personaje
     private State state;
@@ -37,6 +47,7 @@ public class Ship extends Actor {
 
 
     public Ship() {
+
         textureRegion = new TextureRegion(Assets.ship);
         setWidth(ShipWidth);
         setHeight(ShipHeight);
