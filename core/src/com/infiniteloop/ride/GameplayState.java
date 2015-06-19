@@ -119,7 +119,7 @@ public class GameplayState extends ScreenAdapter {
                 if(alien.getAlienPerimeter().overlaps(ship.getShipPerimeter())){
                     ship.HitTaken(alien.AlienLifePoints);
                     alien.state = Alien.State.dead;
-                    alien.setAlienPerimeter(new Rectangle(0, 0, -30, -30));
+                    alien.ALIENAMOUNT --;
                 }
             }
         }

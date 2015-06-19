@@ -24,7 +24,7 @@ public class Alien extends Actor{
     private TextureRegion textureRegion;
 
     public static int AlienLifePoints = MathUtils.random(1,4);
-    private int ALIENAMOUNT;
+    public int ALIENAMOUNT;
 
 
     //Estado del personaje
