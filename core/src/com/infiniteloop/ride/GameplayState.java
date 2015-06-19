@@ -62,17 +62,18 @@ public class GameplayState extends ScreenAdapter {
                 RideGame.HEIGHT + MathUtils.random(700,1700), Align.center);
 
         bridge = new Bridge(MathUtils.random(1,5));
-        bridge.setPosition(RideGame.WIDHT / 2, RideGame.HEIGHT + MathUtils.random(1700,5000), Align.center);
+        bridge.setPosition(RideGame.WIDHT / 2, RideGame.HEIGHT + MathUtils.random(110,170), Align.center);
 
         spacebackground = new SpaceBackground();
         spacebackground.setPosition(0,0);
 
         GameplayStage.addActor(spacebackground);
+        GameplayStage.addActor(bridge);
         GameplayStage.addActor(ship);
         GameplayStage.addActor(alien);
         GameplayStage.addActor(kamikaze);
         GameplayStage.addActor(label);
-        GameplayStage.addActor(bridge);
+
 
         InitInputProcessor();
     }
@@ -105,6 +106,33 @@ public class GameplayState extends ScreenAdapter {
 
         KeyMovementControls();
         AccelerometerMovementControls();
+    }
+
+    private void KeyMovementControls() {
+        if(Gdx.input.isKeyPressed(Input.Keys.A)){
+            ship.MoveLeft();
+        }
+        if(Gdx.input.isKeyPressed(Input.Keys.D)){
+            ship.MoveRight();
+        }
+    }
+
+    private void AccelerometerMovementControls(){
+        float acceleration=Gdx.input.getAccelerometerX();
+
+        if (Math.abs(acceleration) > 0.5f){
+            if (acceleration < 0){
+                ship.MoveRight();
+            }
+            else{
+                ship.MoveLeft();
+            }
+        }
+    }
+
+    public void resize(int widht, int height){
+        camera.setToOrtho(false, widht, height);
+        //Assets.batch.setProjectionMatrix(camera.combined);
     }
 
     private void CheckColisions(){
@@ -154,33 +182,24 @@ public class GameplayState extends ScreenAdapter {
                 }
             }
         }
-    }
-
-
-    private void KeyMovementControls() {
-        if(Gdx.input.isKeyPressed(Input.Keys.A)){
-            ship.MoveLeft();
-        }
-        if(Gdx.input.isKeyPressed(Input.Keys.D)){
-            ship.MoveRight();
-        }
-    }
-
-    private void AccelerometerMovementControls(){
-        float acceleration=Gdx.input.getAccelerometerX();
-
-        if (Math.abs(acceleration) > 0.5f){
-            if (acceleration < 0){
-                ship.MoveRight();
-            }
-            else{
-                ship.MoveLeft();
+        if(bridge != null) {
+            if(ship != null){
+                if(bridge.getBridgePerimeter().overlaps(ship.getShipPerimeter())){
+                    ship.HitTaken((int)(ship.CurrentLife * 0.35));
+                    bridge.state = Bridge.State.dead;
+                    bridge.BRIDGEAMOUNT --;
+                }
             }
         }
-    }
-
-    public void resize(int widht, int height){
-        camera.setToOrtho(false, widht, height);
-        //Assets.batch.setProjectionMatrix(camera.combined);
+        if(shot != null) {
+            if(bridge != null){
+                if(shot.getShotPerimeter().overlaps(bridge.getBridgePerimeter())){
+                    shot.remove();
+                    shot.clear();
+                    shot.setShotPerimeter(new Rectangle(0, 0, -30, -30));
+                    bridge.HitTaken();
+                }
+            }
+        }
     }
 }

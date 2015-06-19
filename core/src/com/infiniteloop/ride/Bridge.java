@@ -12,8 +12,8 @@ import com.badlogic.gdx.utils.Align;
  * Created by jackthebones on 18/06/15.
  */
 public class Bridge extends Actor{
-    public static final int BridgeWidth = 32;
-    public static final int BridgeHeight = 32;
+    public static final int BridgeWidth = RideGame.WIDHT;
+    public static final int BridgeHeight = 30;
 
     //Velocidad y aceleracion posiciones X y Y
     private Vector2 Velocity;

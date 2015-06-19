@@ -82,7 +82,7 @@ public class Kamikaze extends Actor{
         if (KAMIKAZEAMOUNT != 0){
             KamikazeLifePoints = MathUtils.random(1,2);
             setPosition(MathUtils.random(32, RideGame.WIDHT),
-                    RideGame.HEIGHT + MathUtils.random(700,1700), Align.center);
+                    RideGame.HEIGHT + MathUtils.random(400,700), Align.center);
             state = State.alive;
         }
         else{
@@ -134,7 +134,7 @@ public class Kamikaze extends Actor{
 
     private void ResetKamikaze(){
         setPosition(MathUtils.random(32, RideGame.WIDHT),
-                RideGame.HEIGHT + MathUtils.random(35,170), Align.center);
+                RideGame.HEIGHT + MathUtils.random(400,700), Align.center);
     }
 
 
