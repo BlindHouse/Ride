@@ -32,6 +32,13 @@ coin
   orig: 25, 25
   offset: 0, 0
   index: -1
+health
+  rotate: false
+  xy: 324, 864
+  size: 25, 25
+  orig: 25, 25
+  offset: 0, 0
+  index: -1
 ship
   rotate: false
   xy: 324, 891
@@ -41,7 +48,7 @@ ship
   index: -1
 shot
   rotate: false
-  xy: 324, 874
+  xy: 390, 972
   size: 4, 15
   orig: 4, 15
   offset: 0, 0

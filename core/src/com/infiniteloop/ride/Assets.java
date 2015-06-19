@@ -22,6 +22,7 @@ public class Assets {
     public static TextureRegion kamikaze;
     public static TextureRegion bridge;
     public static TextureRegion coin;
+    public static TextureRegion health;
 
     public static void load(){
         atlas = new TextureAtlas("pack.atlas");
@@ -35,6 +36,7 @@ public class Assets {
         kamikaze = atlas.findRegion("tinyalien");
         bridge = atlas.findRegion("bridge");
         coin = atlas.findRegion("coin");
+        health = atlas.findRegion("health");
 
     }
 

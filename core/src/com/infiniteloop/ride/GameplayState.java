@@ -31,6 +31,7 @@ public class GameplayState extends ScreenAdapter {
     private Alien alien;
     private Kamikaze kamikaze;
     private Bridge bridge;
+    private Health health;
     private Coins coin;
 
     public static Label label;
@@ -69,6 +70,9 @@ public class GameplayState extends ScreenAdapter {
         coin.setPosition(MathUtils.random(32, RideGame.WIDHT),
                 RideGame.HEIGHT + MathUtils.random(50,200), Align.center);
 
+        health = new Health();
+        health.setPosition(MathUtils.random(32, RideGame.WIDHT),
+                RideGame.HEIGHT + MathUtils.random(500, 1000), Align.center);
 
 
         spacebackground = new SpaceBackground();
@@ -81,6 +85,7 @@ public class GameplayState extends ScreenAdapter {
         GameplayStage.addActor(kamikaze);
         GameplayStage.addActor(label);
         GameplayStage.addActor(coin);
+        GameplayStage.addActor(health);
 
 
         InitInputProcessor();
@@ -213,6 +218,13 @@ public class GameplayState extends ScreenAdapter {
             if(ship != null){
                 if(coin.getCoinPerimeter().overlaps(ship.getShipPerimeter())){
                     coin.HitTaken();
+                }
+            }
+        }
+        if(health != null) {
+            if(ship != null){
+                if(health.getHealthPerimeter().overlaps(ship.getShipPerimeter())){
+                    health.HitTaken();
                 }
             }
         }
