@@ -66,17 +66,16 @@ public class MenuState extends ScreenAdapter {
 
     }
     private void InitInputProcessor() {
-        playButton.addListener(new ClickListener() {
+        playButton.addListener(new InputListener(){
             @Override
-            public void clicked(InputEvent event, float x, float y) {
+            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
                 try {
                     game.setScreen(new GameplayState(game));
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                return true;
             }
-
-            ;
         });
     }
 
