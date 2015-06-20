@@ -61,4 +61,12 @@ public class MenuState extends ScreenAdapter {
             }
         });
     }
+
+    public void render(float delta) {
+
+        MenuStage.act();
+        //Revisa si hay colisiones por cada vez que se refresca la pantalla.
+        MenuStage.draw();
+
+    }
 }

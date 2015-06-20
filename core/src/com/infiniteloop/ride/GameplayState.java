@@ -96,6 +96,11 @@ public class GameplayState extends ScreenAdapter {
         InitInputProcessor();
     }
 
+    private void ResetVariables(){
+        Ship.CurrentGas = 100;
+        Ship.CurrentLife = 100;
+    }
+
 
     private void InitInputProcessor() {
         Gdx.input.setInputProcessor(new InputAdapter(){
@@ -134,7 +139,9 @@ public class GameplayState extends ScreenAdapter {
             ship.MoveRight();
         }
         if(Gdx.input.isKeyPressed(Input.Keys.TAB)){
+            GameplayStage.clear();
             GameplayStage.dispose();
+            ResetVariables();
             dispose();
             game.setScreen(new MenuState(game));
         }
