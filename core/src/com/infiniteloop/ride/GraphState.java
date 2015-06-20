@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
@@ -67,7 +69,7 @@ public class GraphState extends ScreenAdapter {
         Nodo2.setPosition(268, RideGame.HEIGHT - 105, Align.center);
 
         Nodo3 = new Label("" + 4, new Label.LabelStyle(font, Color.WHITE));
-        Nodo3.setPosition(227, RideGame.HEIGHT - 231, Align.center);
+        Nodo3.setPosition(277, RideGame.HEIGHT - 231, Align.center);
 
         Nodo4 = new Label("" + 4, new Label.LabelStyle(font, Color.WHITE));
         Nodo4.setPosition(248, RideGame.HEIGHT - 336, Align.center);
@@ -104,18 +106,25 @@ public class GraphState extends ScreenAdapter {
     }
 
     private void InitInputProcessor() {
-        Gdx.input.setInputProcessor(new InputAdapter() {
-            @Override
-            public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-                System.out.println(" EJE X : " + screenX + " EJE Y : " + screenY);
-                return true;
-            }
-        });
+        if(NodoInicio.textEquals("h")){
+            NodoInicio.addListener(new InputListener() {
+                @Override
+                public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                    try {
+                        game.setScreen(new GameplayState(game));
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    return super.touchDown(event, x, y, pointer, button);
+                }
+            });
+        }
     }
 
     @Override
     //RENDER DE PANTALLA --- LOOP DE RENDERIZADO POR FPS.
     public void render(float delta) {
+        Gdx.input.setInputProcessor(GraphStage);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         GraphStage.act();
         //Revisa si hay colisiones por cada vez que se refresca la pantalla.
