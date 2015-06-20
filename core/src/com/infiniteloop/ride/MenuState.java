@@ -9,8 +9,12 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 
@@ -48,7 +52,9 @@ public class MenuState extends ScreenAdapter {
         menuBackground.setPosition(0,0);
 
         playButton = new PlayButton();
-        playButton.setPosition(0,300);
+        playButton.setPosition(0,230);
+
+
 
         MenuStage.addActor(label);
         MenuStage.addActor(menuBackground);
@@ -60,21 +66,21 @@ public class MenuState extends ScreenAdapter {
 
     }
     private void InitInputProcessor() {
-        Gdx.input.setInputProcessor(new InputAdapter(){
-
+        playButton.addListener(new ClickListener() {
             @Override
-            public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-                //ship.Jump();
-                dispose();
+            public void clicked(InputEvent event, float x, float y) {
                 try {
                     game.setScreen(new GameplayState(game));
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                return true;
             }
+
+            ;
         });
     }
+
+
 
     @Override
     public void render(float delta) {
