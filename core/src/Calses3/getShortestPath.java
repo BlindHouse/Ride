@@ -25,12 +25,13 @@ import java.util.ArrayList;
 public class getShortestPath {
     
     public Gnodo ShortestPath(String ToGo, ArrayList<Wrapper> Paths){
+        Gnodo Path = null;
         for (int i=0;i < Paths.size();i++){
             if (ToGo.equals(Paths.get(i).getName())){
-                return Paths.get(i).Path.get(1);
+                Path = Paths.get(i).Path.get(1);
+                break;
             }
         }
-        System.out.println("There is no Way to that node");
-        return null;
+        return Path;
     }
 }

@@ -128,7 +128,12 @@ public class Graph {
         for (int i = 0; i < map.map.size(); i++) {
             System.out.println("Foes antes del moviemiento en; " + map.map.get(i).nombre + "es: " + map.map.get(i).foes);
             Gnodo ToGo = findPath(location, map.map.get(i));
-            System.out.println("Foes antes del moviemiento en; " + ToGo.nombre + "es: " + ToGo.foes);
+            try{
+                System.out.println("Foes antes del moviemiento en; " + ToGo.nombre + "es: " + ToGo.foes);
+            }
+            catch (Exception e){
+                System.out.println();
+            }
             map.map.get(i).decreasefoes();
             ToGo.increasefoes();
         }
