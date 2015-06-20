@@ -83,7 +83,6 @@ public class GameplayState extends ScreenAdapter {
         gas.setPosition(MathUtils.random(32, RideGame.WIDHT),
                 RideGame.HEIGHT + MathUtils.random(500, 1000), Align.center);
 
-
         spacebackground = new SpaceBackground();
         spacebackground.setPosition(0,0);
 
@@ -96,7 +95,6 @@ public class GameplayState extends ScreenAdapter {
         GameplayStage.addActor(coin);
         GameplayStage.addActor(gas);
         GameplayStage.addActor(health);
-
 
         InitInputProcessor();
     }

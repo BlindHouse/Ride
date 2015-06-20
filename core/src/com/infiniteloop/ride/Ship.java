@@ -97,6 +97,7 @@ public class Ship extends Actor {
     }
 
     private void GameOver() {
+        CurrentScore = 0;
         System.out.println("GAME OVER");
     }
 

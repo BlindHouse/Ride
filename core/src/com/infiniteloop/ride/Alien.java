@@ -203,8 +203,8 @@ public class Alien extends Actor{
             GameplayState.label.setText("Life : " + Ship.CurrentLife + "  " + "Gas : " + Ship.CurrentGas + "  "
                     + "Score : " + Ship.CurrentScore);
             if(Ship.CurrentGas <= 0){
-                Ship.state = Ship.State.dead;
                 Ship.CurrentScore = 0;
+                Ship.state = Ship.State.dead;
             }
         }
     }

@@ -15,7 +15,7 @@ public class RideGame extends Game {
 	@Override
 	public void create () {
 		Assets.load();
-		setScreen(new MenuState(this));
+		setScreen(new GraphState(this));
 	}
 
 	@Override
