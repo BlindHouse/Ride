@@ -37,7 +37,7 @@ public class Ship extends Actor {
     //Estado del personaje
     public static State state;
     //Posibles estados de personaje durante el juego
-    private enum State {alive, dead}
+    public enum State {alive, dead}
     //Rectangulo que encierra a la nave. Utilizado para determinar si hay colisiones.
     private Rectangle ShipPerimeter;
 
@@ -97,7 +97,6 @@ public class Ship extends Actor {
     }
 
     private void GameOver() {
-        //Todo CODE OF GAME OVER HER HER HERW HER SDFNSD
         System.out.println("GAME OVER");
     }
 

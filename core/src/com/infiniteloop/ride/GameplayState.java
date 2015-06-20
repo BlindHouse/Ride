@@ -97,7 +97,7 @@ public class GameplayState extends ScreenAdapter {
         InitInputProcessor();
     }
 
-    private void ResetVariables(){
+    public static void ResetVariables(){
         Ship.CurrentGas = 100;
         Ship.CurrentLife = 100;
     }
@@ -125,6 +125,7 @@ public class GameplayState extends ScreenAdapter {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         GameplayStage.act();
         //Revisa si hay colisiones por cada vez que se refresca la pantalla.
+        CheckIfGameOver();
         CheckColisions();
         GameplayStage.draw();
 
@@ -139,7 +140,10 @@ public class GameplayState extends ScreenAdapter {
         if(Gdx.input.isKeyPressed(Input.Keys.D)){
             ship.MoveRight();
         }
-        if(Gdx.input.isKeyPressed(Input.Keys.TAB)){
+    }
+
+    public void CheckIfGameOver(){
+        if(Ship.state == Ship.State.dead){
             GameplayStage.clear();
             GameplayStage.dispose();
             ResetVariables();
