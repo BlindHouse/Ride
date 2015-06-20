@@ -13,6 +13,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 
+import java.util.ArrayList;
+
 
 /**
  * Created by jackthebones on 12/06/15.
@@ -23,6 +25,8 @@ public class GameplayState extends ScreenAdapter {
     public OrthographicCamera camera;
 
     public static Stage GameplayStage;
+
+    public ArrayList<Shot> ShotQueue = new ArrayList();
 
     private Ship ship;
     private SpaceBackground spacebackground;
@@ -181,11 +185,15 @@ public class GameplayState extends ScreenAdapter {
     private void CheckColisions(){
         if(shot != null) {
             if(alien != null){
-                if(shot.getShotPerimeter().overlaps(alien.getAlienPerimeter())){
-                    shot.remove();
-                    shot.clear();
-                    shot.setShotPerimeter(new Rectangle(0, 0, -30, -30));
-                    alien.HitTaken();
+                if (!ShotQueue.isEmpty()) {
+                    for (int i=0; i < ShotQueue.size(); i++) {
+                        if (ShotQueue.get(i).getShotPerimeter().overlaps(alien.getAlienPerimeter())) {
+                            ShotQueue.get(i).remove();
+                            ShotQueue.get(i).clear();
+                            ShotQueue.get(i).setShotPerimeter(new Rectangle(0, 0, -30, -30));
+                            alien.HitTaken();
+                        }
+                    }
                 }
             }
         }
@@ -208,11 +216,15 @@ public class GameplayState extends ScreenAdapter {
         }
         if(shot != null) {
             if(kamikaze != null){
-                if(shot.getShotPerimeter().overlaps(kamikaze.getKamikazePerimeter())){
-                    shot.remove();
-                    shot.clear();
-                    shot.setShotPerimeter(new Rectangle(0, 0, -30, -30));
-                    kamikaze.HitTaken();
+                if (!ShotQueue.isEmpty()){
+                    for (int i=0; i < ShotQueue.size(); i++){
+                        if(ShotQueue.get(i).getShotPerimeter().overlaps(kamikaze.getKamikazePerimeter())){
+                            ShotQueue.get(i).remove();
+                            ShotQueue.get(i).clear();
+                            ShotQueue.get(i).setShotPerimeter(new Rectangle(0, 0, -30, -30));
+                            kamikaze.HitTaken();
+                        }
+                    }
                 }
             }
         }
@@ -236,11 +248,15 @@ public class GameplayState extends ScreenAdapter {
         }
         if(shot != null) {
             if(bridge != null){
-                if(shot.getShotPerimeter().overlaps(bridge.getBridgePerimeter())){
-                    shot.remove();
-                    shot.clear();
-                    shot.setShotPerimeter(new Rectangle(0, 0, -30, -30));
-                    bridge.HitTaken();
+                if (!ShotQueue.isEmpty()){
+                    for (int i=0; i < ShotQueue.size(); i++){
+                        if(ShotQueue.get(i).getShotPerimeter().overlaps(bridge.getBridgePerimeter())){
+                            ShotQueue.get(i).remove();
+                            ShotQueue.get(i).clear();
+                            ShotQueue.get(i).setShotPerimeter(new Rectangle(0, 0, -30, -30));
+                            bridge.HitTaken();
+                        }
+                    }
                 }
             }
         }
