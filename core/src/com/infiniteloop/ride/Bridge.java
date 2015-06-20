@@ -10,6 +10,10 @@ import com.badlogic.gdx.utils.Align;
 
 /**
  * Created by jackthebones on 18/06/15.
+ *
+ * Clase encargada de crear un puente en pantalla
+ * y lo hace actuar.
+ *
  */
 public class Bridge extends Actor{
     public static final int BridgeWidth = RideGame.WIDHT;

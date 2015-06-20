@@ -10,6 +10,10 @@ import com.badlogic.gdx.utils.Align;
 
 /**
  * Created by jackthebones on 19/06/15.
+ *
+ * Clase encargada de crear Coins en pantalla
+ * y hacerlas actuar.
+ *
  */
 public class Coins extends Actor {
 
@@ -30,6 +34,11 @@ public class Coins extends Actor {
 
     private Rectangle CoinPerimeter;
 
+    /**
+     * Inicializa a las monedas
+     * asi como los algoritmos de
+     * renderizado y movimiento.
+     */
     public Coins() {
 
         textureRegion = new TextureRegion(Assets.coin);
@@ -81,6 +90,12 @@ public class Coins extends Actor {
         state = State.alive;
     }
 
+    /**
+     * Evalua cuando una moneda ha sido recolectada
+     * aumenta el score del personaje
+     * y lo dibuja en pantalla, ademas de
+     * hacer un reset de la moneda.
+     */
     public void HitTaken() {
         Ship.CurrentScore = Ship.CurrentScore + MathUtils.random(1,3);
         GameplayState.label.setText("Life : " + Ship.CurrentLife + "  " + "Gas : " + Ship.CurrentGas + "  "

@@ -8,46 +8,46 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Align;
 
-import java.util.Date;
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * Created by jackthebones on 14/06/15.
+ *
+ * Clase encargada de crear la nave
+ * que sera controlada por el usuario
+ * ademas de ciertos metodos que la hacen
+ * actuar.
+ *
  */
 public class Ship extends Actor {
-
+    //Definicion de las dimensiones del actor
     public static final int ShipWidth = 64;
     public static final int ShipHeight = 64;
-
+    //Variables de velocidad
     public static float GRAVITY = 400f;
-    public static float JUMPVELOCITY = 450f;
     public static int CurrentScore = 0;
 
     //Velocidad y aceleracion posiciones X y Y
     private Vector2 Velocity;
     private Vector2 Acceleration;
-
+    //Variables de puntos de vida y de combustible.
     public static int CurrentLife = 100;
     public static int CurrentGas = 100;
-
+    //Variable que sera utilizada para asignar una imagen del sprite a la nave.
     private TextureRegion textureRegion;
-
-    private BitmapFont font;
-
     //Estado del personaje
     public static State state;
-
-
-
     //Posibles estados de personaje durante el juego
     private enum State {alive, dead}
-
+    //Rectangulo que encierra a la nave. Utilizado para determinar si hay colisiones.
     private Rectangle ShipPerimeter;
 
-
+    /**
+     * Inicializa a la nave, asi como los algoritmos de
+     * renderizado y movimiento, y acciones en caso
+     * de que la nave reciba golpes.
+     */
     public Ship() {
-
+        //Asignacion de la textura a la nave.
         textureRegion = new TextureRegion(Assets.ship);
         setWidth(ShipWidth);
         setHeight(ShipHeight);
@@ -107,6 +107,20 @@ public class Ship extends Actor {
         ShipPerimeter.y = getY();
 
     }
+
+    /**
+     * Hace que la vida de la nave descienda cuando ha sido
+     * alcanzada por algun disparo o nave enemiga,
+     * ademas actualiza la cantidad de vida en pantalla,
+     * y en caso de que la vida sea 0,
+     * cambia el estado a muerto, lo que ejecuta la funcion de
+     * gameover.
+     *
+     * Se le ingresa un parametro el cual es un numero entero que
+     * sera restado de la vida de la nave.
+     *
+     * @param Hit
+     */
     public static void HitTaken(int Hit) {
         CurrentLife = CurrentLife - Hit;
         GameplayState.label.setText("Life : " + Ship.CurrentLife + "  " + "Gas : " + Ship.CurrentGas + "  "
@@ -140,18 +154,6 @@ public class Ship extends Actor {
             //Cambia el estado del personaje a Dead.
             //state = State.dead;
         }
-        if (IsAboveTop()) {
-            //Mueve la posicion al nivel del techo y hace la colision con los pixeles
-            //"top" de la imagen
-            setPosition(getX(), RideGame.TOPSCREENLEVEL, Align.topLeft);
-
-            //Cambia el estado del personaje a Dead.
-            //state = State.dead;
-        }
-    }
-
-    private boolean IsAboveTop(){
-        return getY(Align.top) > RideGame.TOPSCREENLEVEL;
     }
 
     private boolean IsBelowGround(){
@@ -161,11 +163,6 @@ public class Ship extends Actor {
         else{
             return false;
         }
-    }
-
-    public void Jump(){
-        Velocity.y = JUMPVELOCITY;
-
     }
 
     public void MoveLeft(){
@@ -190,6 +187,12 @@ public class Ship extends Actor {
 
     }
 
+    /**
+     * Aplica la aceleracion a la velocidad de la nave
+     * para la animacion inicial cuando se ingresa a la pantalla
+     * de juego.
+     * @param delta
+     */
     private void ApplyAcceleration(float delta) {
 
         Velocity.add(Acceleration.x * delta, Acceleration.y * delta);

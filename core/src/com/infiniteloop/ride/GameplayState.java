@@ -56,7 +56,7 @@ public class GameplayState extends ScreenAdapter {
         ship = new Ship();
         ship.setPosition(RideGame.WIDHT / 2, RideGame.HEIGHT / 2, Align.center);
 
-        alien = new Alien(40);
+        alien = new Alien(10);
         alien.setPosition(MathUtils.random(32, RideGame.WIDHT - 32), RideGame.HEIGHT, Align.center);
 
         kamikaze = new Kamikaze(MathUtils.random(3,10));

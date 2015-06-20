@@ -8,17 +8,28 @@ import com.badlogic.gdx.utils.Align;
 
 /**
  * Created by jackthebones on 17/06/15.
+ *
+ * Clase encargada de hacer
+ * scrolling y dibujar el fondo
+ * del juego.
+ *
  */
 public class SpaceBackground extends Actor{
 
 
-    //Velocidad y aceleracion posiciones X y Y
+    //Velocidad Y
     private Vector2 Velocity;
 
     private TextureRegion textureRegion;
 
-    //Estado del personaje
-
+    /**
+     * Metodo encargado de inicializar
+     * el fondo, y asignarle las dimensiones
+     * para que encaje correctamente
+     * en la pantalla, ademas de brindarle
+     * una velocidad de scrolling.
+     *
+     */
     public SpaceBackground() {
         textureRegion = new TextureRegion(Assets.spacebackground);
         setWidth(320);
@@ -43,6 +54,11 @@ public class SpaceBackground extends Actor{
 
     }
 
+    /**
+     * Metodo que vuelve a dibujar la imagen una y otra
+     * vez para que el scrolling sea infinito.
+     * @param delta
+     */
     private void Scroll(float delta) {
         UpdatePosition(delta);
 
@@ -53,6 +69,13 @@ public class SpaceBackground extends Actor{
         }
     }
 
+    /**
+     * Metodo encargado de verificar
+     * cuando el fondo debido al scrolling
+     * llega a un punto de la pantalla en donde
+     * debe volver a dibujarse.
+     * @return boolean.
+     */
     private boolean NeedsToReset(){
         if (getY(Align.bottom) < -480){
             return true;
@@ -61,6 +84,7 @@ public class SpaceBackground extends Actor{
             return false;
         }
     }
+
 
     private void UpdatePosition(float delta) {
 
