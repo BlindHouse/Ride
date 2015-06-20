@@ -11,18 +11,11 @@ public class RideGame extends Game {
 
 	public static int WIDHT = 300;
 	public static int HEIGHT = 480;
-
-
+	
 	@Override
 	public void create () {
 		Assets.load();
-		try {
-			GameplayState gameplayState = new GameplayState(this);
-			MenuState menuState = new MenuState(this);
-			setScreen(gameplayState);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		setScreen(new MenuState(this));
 	}
 
 	@Override

@@ -4,6 +4,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+import java.awt.*;
+
 /**
  * Created by jackthebones on 12/06/15.
  */
@@ -27,6 +29,8 @@ public class Assets {
     public static TextureRegion menubackround;
     public static TextureRegion playbutton;
     public static TextureRegion name;
+    public static TextureRegion gameoverbackground;
+    public static TextureRegion gobackbutton;
 
     public static void load(){
         atlas = new TextureAtlas("pack.atlas");
@@ -45,6 +49,8 @@ public class Assets {
         menubackround = atlas.findRegion("menubackground");
         playbutton = atlas.findRegion("playbutton");
         name = atlas.findRegion("name");
+        gameoverbackground = atlas.findRegion("gameoverbackground");
+        gobackbutton = atlas.findRegion("goback");
 
 
     }

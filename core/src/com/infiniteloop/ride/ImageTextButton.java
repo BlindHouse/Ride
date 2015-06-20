@@ -7,13 +7,21 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 /**
  * Created by jackthebones on 20/06/15.
  */
-public class PlayButton extends Actor {
+public class ImageTextButton extends Actor {
     private TextureRegion textureRegion;
 
-    public PlayButton() {
-        textureRegion = new TextureRegion(Assets.playbutton);
-        setWidth(300);
-        setHeight(100);
+    public ImageTextButton(int x) {
+        if(x == 1){
+            textureRegion = new TextureRegion(Assets.playbutton);
+            setWidth(300);
+            setHeight(100);
+        }
+        else{
+            textureRegion = new TextureRegion(Assets.gobackbutton);
+            setWidth(300);
+            setHeight(100);
+        }
+
 
     }
 

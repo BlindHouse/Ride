@@ -8,13 +8,21 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 /**
  * Created by jackthebones on 20/06/15.
  */
-public class MenuBackground extends Actor {
+public class StaticBackground extends Actor {
     private TextureRegion textureRegion;
 
-    public MenuBackground() {
-        textureRegion = new TextureRegion(Assets.menubackround);
-        setWidth(300);
-        setHeight(960 / 2);
+    public StaticBackground(int x) {
+        if(x  == 1){
+            textureRegion = new TextureRegion(Assets.menubackround);
+            setWidth(300);
+            setHeight(960 / 2);
+        }
+        else{
+            textureRegion = new TextureRegion(Assets.gameoverbackground);
+            setWidth(300);
+            setHeight(960 / 2);
+        }
+
 
     }
 

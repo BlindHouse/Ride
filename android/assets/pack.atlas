@@ -32,58 +32,72 @@ coin
   orig: 25, 25
   offset: 0, 0
   index: -1
-gas
-  rotate: false
-  xy: 928, 930
-  size: 25, 25
-  orig: 25, 25
-  offset: 0, 0
-  index: -1
-graph
+gameoverbackground
   rotate: false
   xy: 324, 541
   size: 300, 480
   orig: 300, 480
   offset: 0, 0
   index: -1
-health
+gas
   rotate: false
   xy: 994, 996
   size: 25, 25
   orig: 25, 25
   offset: 0, 0
   index: -1
-menubackground
+goback
+  rotate: false
+  xy: 626, 439
+  size: 300, 100
+  orig: 300, 100
+  offset: 0, 0
+  index: -1
+graph
   rotate: false
   xy: 626, 541
   size: 300, 480
   orig: 300, 480
   offset: 0, 0
   index: -1
+health
+  rotate: false
+  xy: 626, 142
+  size: 25, 25
+  orig: 25, 25
+  offset: 0, 0
+  index: -1
+menubackground
+  rotate: false
+  xy: 324, 59
+  size: 300, 480
+  orig: 300, 480
+  offset: 0, 0
+  index: -1
 name
   rotate: false
-  xy: 324, 439
+  xy: 626, 337
   size: 300, 100
   orig: 300, 100
   offset: 0, 0
   index: -1
 playbutton
   rotate: false
-  xy: 324, 337
+  xy: 626, 235
   size: 300, 100
   orig: 300, 100
   offset: 0, 0
   index: -1
 ship
   rotate: false
-  xy: 626, 475
+  xy: 626, 169
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 shot
   rotate: false
-  xy: 626, 458
+  xy: 692, 218
   size: 4, 15
   orig: 4, 15
   offset: 0, 0
@@ -97,7 +111,7 @@ spacebackground
   index: -1
 tinyalien
   rotate: false
-  xy: 324, 303
+  xy: 928, 923
   size: 32, 32
   orig: 32, 32
   offset: 0, 0

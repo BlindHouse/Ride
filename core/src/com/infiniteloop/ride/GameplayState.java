@@ -144,7 +144,7 @@ public class GameplayState extends ScreenAdapter {
             GameplayStage.dispose();
             ResetVariables();
             dispose();
-            game.setScreen(new MenuState(game));
+            game.setScreen(new GameOverState(game));
         }
     }
 
