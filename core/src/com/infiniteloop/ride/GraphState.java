@@ -1,6 +1,7 @@
 package com.infiniteloop.ride;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -37,6 +38,18 @@ public class GraphState extends ScreenAdapter {
 
         GraphStage.addActor(spacebackground);
         GraphStage.addActor(graph);
+
+        InitInputProcessor();
+    }
+
+    private void InitInputProcessor() {
+        Gdx.input.setInputProcessor(new InputAdapter() {
+            @Override
+            public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+                System.out.println(" EJE X : " + screenX + " EJE Y : " + screenY);
+                return true;
+            }
+        });
     }
 
     @Override
