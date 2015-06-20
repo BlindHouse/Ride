@@ -54,8 +54,6 @@ public class MenuState extends ScreenAdapter {
         playButton = new PlayButton();
         playButton.setPosition(0,230);
 
-
-
         MenuStage.addActor(label);
         MenuStage.addActor(menuBackground);
         MenuStage.addActor(playButton);
@@ -67,20 +65,18 @@ public class MenuState extends ScreenAdapter {
     }
     private void InitInputProcessor() {
         playButton.addListener(new InputListener() {
-            public boolean isTouched(InputEvent event, float x, float y, int pointer, int button) {
-                if (touchDown(event, x, y, pointer, button)){
-                    System.out.println("Example" + " touch started at (" + x + ", " + y + ")");
-                    return true;
-                }
-                return false;
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                System.out.println("Example" + " touch started at (" + x + ", " + y + ")");
+                return super.touchDown(event, x, y, pointer, button);
             }
         });
     }
 
 
-
     @Override
     public void render(float delta) {
+        Gdx.input.setInputProcessor(MenuStage);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         MenuStage.act();
         //Revisa si hay colisiones por cada vez que se refresca la pantalla.
