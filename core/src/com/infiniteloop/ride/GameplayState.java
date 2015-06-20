@@ -124,6 +124,7 @@ public class GameplayState extends ScreenAdapter {
                 shot = new Shot(200f);
                 shot.setPosition(ship.getX(Align.center), ship.getY(Align.top), Align.bottom);
                 GameplayStage.addActor(shot);
+                ShotQueue.add(shot);
                 return true;
             }
         });
