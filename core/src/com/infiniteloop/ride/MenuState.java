@@ -66,15 +66,13 @@ public class MenuState extends ScreenAdapter {
 
     }
     private void InitInputProcessor() {
-        playButton.addListener(new InputListener(){
-            @Override
-            public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-                try {
-                    game.setScreen(new GameplayState(game));
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+        playButton.addListener(new InputListener() {
+            public boolean isTouched(InputEvent event, float x, float y, int pointer, int button) {
+                if (touchDown(event, x, y, pointer, button)){
+                    System.out.println("Example" + " touch started at (" + x + ", " + y + ")");
+                    return true;
                 }
-                return true;
+                return false;
             }
         });
     }
