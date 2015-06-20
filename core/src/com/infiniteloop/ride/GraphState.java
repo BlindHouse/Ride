@@ -61,7 +61,29 @@ public class GraphState extends ScreenAdapter {
         NodoInicio.setPosition(141, 226 + 30, Align.center);
 
         Nodo1 = new Label("" + 4, new Label.LabelStyle(font, Color.WHITE));
-        NodoInicio.setPosition(150, 54 + 30, Align.center);
+        Nodo1.setPosition(150, RideGame.HEIGHT - 54, Align.center);
+
+        Nodo2 = new Label("" + 4, new Label.LabelStyle(font, Color.WHITE));
+        Nodo2.setPosition(268, RideGame.HEIGHT - 105, Align.center);
+
+        Nodo3 = new Label("" + 4, new Label.LabelStyle(font, Color.WHITE));
+        Nodo3.setPosition(227, RideGame.HEIGHT - 231, Align.center);
+
+        Nodo4 = new Label("" + 4, new Label.LabelStyle(font, Color.WHITE));
+        Nodo4.setPosition(248, RideGame.HEIGHT - 336, Align.center);
+
+        Nodo5 = new Label("" + 4, new Label.LabelStyle(font, Color.WHITE));
+        Nodo5.setPosition(148, RideGame.HEIGHT - 389, Align.center);
+
+        Nodo6 = new Label("" + 4, new Label.LabelStyle(font, Color.WHITE));
+        Nodo6.setPosition(52, RideGame.HEIGHT - 346, Align.center);
+
+        Nodo7 = new Label("" + 4, new Label.LabelStyle(font, Color.WHITE));
+        Nodo7.setPosition(19, RideGame.HEIGHT - 229, Align.center);
+
+        Nodo8 = new Label("" + 4, new Label.LabelStyle(font, Color.WHITE));
+        Nodo8.setPosition(50, RideGame.HEIGHT - 105, Align.center);
+
 
 
         /////////////////////////////////////////////////////////////////////////////////
@@ -69,6 +91,14 @@ public class GraphState extends ScreenAdapter {
         GraphStage.addActor(graph);
 
         GraphStage.addActor(NodoInicio);
+        GraphStage.addActor(Nodo1);
+        GraphStage.addActor(Nodo2);
+        GraphStage.addActor(Nodo3);
+        GraphStage.addActor(Nodo4);
+        GraphStage.addActor(Nodo5);
+        GraphStage.addActor(Nodo6);
+        GraphStage.addActor(Nodo7);
+        GraphStage.addActor(Nodo8);
 
         InitInputProcessor();
     }
