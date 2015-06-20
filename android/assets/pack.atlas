@@ -1,6 +1,6 @@
 
 pack.png
-size: 512,1024
+size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -13,7 +13,7 @@ alienshot
   index: -1
 bigalien
   rotate: false
-  xy: 324, 957
+  xy: 324, 475
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
@@ -34,28 +34,35 @@ coin
   index: -1
 gas
   rotate: false
-  xy: 324, 864
+  xy: 390, 514
   size: 25, 25
   orig: 25, 25
   offset: 0, 0
   index: -1
+graph
+  rotate: false
+  xy: 324, 541
+  size: 300, 480
+  orig: 300, 480
+  offset: 0, 0
+  index: -1
 health
   rotate: false
-  xy: 390, 962
+  xy: 626, 930
   size: 25, 25
   orig: 25, 25
   offset: 0, 0
   index: -1
 ship
   rotate: false
-  xy: 324, 891
+  xy: 626, 957
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 shot
   rotate: false
-  xy: 424, 1006
+  xy: 692, 1006
   size: 4, 15
   orig: 4, 15
   offset: 0, 0
@@ -69,7 +76,7 @@ spacebackground
   index: -1
 tinyalien
   rotate: false
-  xy: 390, 989
+  xy: 324, 441
   size: 32, 32
   orig: 32, 32
   offset: 0, 0

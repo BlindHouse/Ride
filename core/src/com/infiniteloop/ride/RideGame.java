@@ -12,13 +12,14 @@ public class RideGame extends Game {
 	public static int WIDHT = 300;
 	public static int HEIGHT = 480;
 
-	public static int TOPSCREENLEVEL = HEIGHT;
 
 	@Override
 	public void create () {
 		Assets.load();
 		try {
-			setScreen(new GameplayState(this));
+			GameplayState gameplayState = new GameplayState(this);
+			MenuState menuState = new MenuState(this);
+			setScreen(gameplayState);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -28,4 +29,6 @@ public class RideGame extends Game {
 	public void dispose () {
 		Assets.dispose();
 	}
+
+
 }

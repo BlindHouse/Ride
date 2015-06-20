@@ -133,6 +133,11 @@ public class GameplayState extends ScreenAdapter {
         if(Gdx.input.isKeyPressed(Input.Keys.D)){
             ship.MoveRight();
         }
+        if(Gdx.input.isKeyPressed(Input.Keys.TAB)){
+            GameplayStage.dispose();
+            dispose();
+            game.setScreen(new MenuState(game));
+        }
     }
 
     private void AccelerometerMovementControls(){

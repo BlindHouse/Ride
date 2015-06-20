@@ -252,12 +252,10 @@ public class Alien extends Actor{
      * Metodo que mueve al actor en pantalla.
      */
     private void UpdatePosition(float delta) {
-
         //Mueve el personaje, utilizando el metodo setX y setY
         //pasandole la ubicacion en el momento + añadiendole las variables del
         //cambio de posicion.
         setX(getX() + Velocity.x * delta);
         setY(getY() + Velocity.y * delta);
-
     }
 }
