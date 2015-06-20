@@ -28,6 +28,8 @@ public class MenuState extends ScreenAdapter {
 
     private BitmapFont font;
 
+    private MenuBackground menuBackground;
+
     public MenuState(RideGame game) {
         this.game = game;
         camera = new OrthographicCamera();
@@ -41,7 +43,13 @@ public class MenuState extends ScreenAdapter {
         label = new Label("MENU", new Label.LabelStyle(font, Color.WHITE));
         label.setPosition(10,10);
 
+        menuBackground = new MenuBackground();
+        menuBackground.setPosition(0,0);
+
         MenuStage.addActor(label);
+        MenuStage.addActor(menuBackground);
+
+
 
         InitInputProcessor();
 

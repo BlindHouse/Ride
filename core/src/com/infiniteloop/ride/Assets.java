@@ -24,6 +24,9 @@ public class Assets {
     public static TextureRegion coin;
     public static TextureRegion gas;
     public static TextureRegion health;
+    public static TextureRegion menubackround;
+    public static TextureRegion playbutton;
+    public static TextureRegion name;
 
     public static void load(){
         atlas = new TextureAtlas("pack.atlas");
@@ -39,6 +42,10 @@ public class Assets {
         coin = atlas.findRegion("coin");
         health = atlas.findRegion("health");
         gas = atlas.findRegion("gas");
+        menubackround = atlas.findRegion("menubackground");
+        playbutton = atlas.findRegion("playbutton");
+        name = atlas.findRegion("name");
+
 
     }
 
