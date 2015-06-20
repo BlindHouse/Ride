@@ -3,11 +3,14 @@ package com.infiniteloop.ride;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
-import com.sun.corba.se.impl.orbutil.graph.Graph;
 
 /**
  * Created by jackthebones on 20/06/15.
@@ -21,6 +24,18 @@ public class GraphState extends ScreenAdapter {
 
     private SpaceBackground spacebackground;
     private com.infiniteloop.ride.Graph graph;
+
+    private BitmapFont font;
+    public static Label NodoInicio;
+    public static Label Nodo1;
+    public static Label Nodo2;
+    public static Label Nodo3;
+    public static Label Nodo4;
+    public static Label Nodo5;
+    public static Label Nodo6;
+    public static Label Nodo7;
+    public static Label Nodo8;
+
 
     public GraphState(RideGame game){
         this.game = game;
@@ -36,8 +51,14 @@ public class GraphState extends ScreenAdapter {
         graph = new com.infiniteloop.ride.Graph();
         graph.setPosition(0,0);
 
+        //DIBUJO DENTRO DE NODOS DEL GRAFO
+        NodoInicio = new Label("P", new Label.LabelStyle(font, Color.WHITE));
+        NodoInicio.setPosition(141, 226, Align.center);
+
         GraphStage.addActor(spacebackground);
         GraphStage.addActor(graph);
+
+        GraphStage.addActor(NodoInicio);
 
         InitInputProcessor();
     }
