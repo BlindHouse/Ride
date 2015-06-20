@@ -25,7 +25,8 @@ public class Ship extends Actor {
     //Variables de velocidad
     public static float GRAVITY = 400f;
     public static int CurrentScore = 0;
-
+    //Ubicación
+    public static String location = "";
     //Velocidad y aceleracion posiciones X y Y
     private Vector2 Velocity;
     private Vector2 Acceleration;
@@ -67,6 +68,12 @@ public class Ship extends Actor {
         setOrigin(Align.center);
 
 
+    }
+    public String getLocation(){
+        return this.location;
+    }
+    public void setLocation(String Location){
+        this.location = Location;
     }
 
     @Override
