@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.sun.corba.se.impl.orbutil.graph.Graph;
 
 /**
  * Created by jackthebones on 20/06/15.
@@ -18,6 +19,7 @@ public class GraphState extends ScreenAdapter {
     public static Stage GraphStage;
 
     private SpaceBackground spacebackground;
+    private com.infiniteloop.ride.Graph graph;
 
     public GraphState(RideGame game){
         this.game = game;
@@ -30,7 +32,11 @@ public class GraphState extends ScreenAdapter {
         spacebackground = new SpaceBackground();
         spacebackground.setPosition(0,0);
 
+        graph = new com.infiniteloop.ride.Graph();
+        graph.setPosition(0,0);
+
         GraphStage.addActor(spacebackground);
+        GraphStage.addActor(graph);
     }
 
     @Override
