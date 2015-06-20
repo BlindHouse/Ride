@@ -97,9 +97,17 @@ public class GameplayState extends ScreenAdapter {
         InitInputProcessor();
     }
 
-    public static void ResetVariables(){
-        Ship.CurrentGas = 100;
-        Ship.CurrentLife = 100;
+    public static void ResetVariables(int i){
+        if(i == 1){
+            Ship.CurrentGas = 100;
+            Ship.CurrentLife = 100;
+        }
+        else{
+            Ship.CurrentGas = 100;
+            Ship.CurrentLife = 100;
+            Ship.CurrentScore = 100;
+        }
+
     }
 
 
@@ -146,7 +154,7 @@ public class GameplayState extends ScreenAdapter {
         if(Ship.state == Ship.State.dead){
             GameplayStage.clear();
             GameplayStage.dispose();
-            ResetVariables();
+            ResetVariables(2);
             dispose();
             game.setScreen(new GameOverState(game));
         }
