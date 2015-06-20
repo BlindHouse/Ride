@@ -6,6 +6,7 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -52,9 +53,18 @@ public class GraphState extends ScreenAdapter {
         graph.setPosition(0,0);
 
         //DIBUJO DENTRO DE NODOS DEL GRAFO
-        NodoInicio = new Label("P", new Label.LabelStyle(font, Color.WHITE));
-        NodoInicio.setPosition(141, 226, Align.center);
 
+        font = new BitmapFont();
+        font.getRegion().getTexture().setFilter(Texture.TextureFilter.Linear, Texture.TextureFilter.Linear);
+
+        NodoInicio = new Label("P", new Label.LabelStyle(font, Color.WHITE));
+        NodoInicio.setPosition(141, 226 + 30, Align.center);
+
+        Nodo1 = new Label("" + 4, new Label.LabelStyle(font, Color.WHITE));
+        NodoInicio.setPosition(150, 54 + 30, Align.center);
+
+
+        /////////////////////////////////////////////////////////////////////////////////
         GraphStage.addActor(spacebackground);
         GraphStage.addActor(graph);
 
