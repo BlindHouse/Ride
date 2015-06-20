@@ -13,7 +13,7 @@ alienshot
   index: -1
 bigalien
   rotate: false
-  xy: 324, 475
+  xy: 928, 957
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
@@ -34,7 +34,7 @@ coin
   index: -1
 gas
   rotate: false
-  xy: 390, 514
+  xy: 928, 930
   size: 25, 25
   orig: 25, 25
   offset: 0, 0
@@ -48,21 +48,42 @@ graph
   index: -1
 health
   rotate: false
-  xy: 626, 930
+  xy: 994, 996
   size: 25, 25
   orig: 25, 25
   offset: 0, 0
   index: -1
+menubackground
+  rotate: false
+  xy: 626, 541
+  size: 300, 480
+  orig: 300, 480
+  offset: 0, 0
+  index: -1
+name
+  rotate: false
+  xy: 324, 439
+  size: 300, 100
+  orig: 300, 100
+  offset: 0, 0
+  index: -1
+playbutton
+  rotate: false
+  xy: 324, 337
+  size: 300, 100
+  orig: 300, 100
+  offset: 0, 0
+  index: -1
 ship
   rotate: false
-  xy: 626, 957
+  xy: 626, 475
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 shot
   rotate: false
-  xy: 692, 1006
+  xy: 626, 458
   size: 4, 15
   orig: 4, 15
   offset: 0, 0
@@ -76,7 +97,7 @@ spacebackground
   index: -1
 tinyalien
   rotate: false
-  xy: 324, 441
+  xy: 324, 303
   size: 32, 32
   orig: 32, 32
   offset: 0, 0

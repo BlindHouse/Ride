@@ -2,19 +2,18 @@ package com.infiniteloop.ride;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
 /**
  * Created by jackthebones on 20/06/15.
  */
-public class MenuBackground extends Actor {
+public class PlayButton extends Actor {
     private TextureRegion textureRegion;
 
-    public MenuBackground() {
-        textureRegion = new TextureRegion(Assets.menubackround);
+    public PlayButton() {
+        textureRegion = new TextureRegion(Assets.playbutton);
         setWidth(300);
-        setHeight(960 / 2);
+        setHeight(100);
 
     }
 

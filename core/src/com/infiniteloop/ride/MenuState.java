@@ -29,6 +29,7 @@ public class MenuState extends ScreenAdapter {
     private BitmapFont font;
 
     private MenuBackground menuBackground;
+    private PlayButton playButton;
 
     public MenuState(RideGame game) {
         this.game = game;
@@ -46,8 +47,12 @@ public class MenuState extends ScreenAdapter {
         menuBackground = new MenuBackground();
         menuBackground.setPosition(0,0);
 
+        playButton = new PlayButton();
+        playButton.setPosition(0,300);
+
         MenuStage.addActor(label);
         MenuStage.addActor(menuBackground);
+        MenuStage.addActor(playButton);
 
 
 
