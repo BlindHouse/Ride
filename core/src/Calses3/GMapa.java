@@ -29,8 +29,7 @@ public class GMapa {
     
     ArrayList<Gnodo> map = new ArrayList();
     
-    public  GMapa(){
-    }
+    public  GMapa(){}
     
     public void addtomap(Gnodo nodo){
 
@@ -40,5 +39,8 @@ public class GMapa {
     public void setInicio (Gnodo Inicio){
 
         this.inicio = Inicio;
+    }
+    public  ArrayList<Gnodo>  getMap(){
+        return this.map;
     }
 }

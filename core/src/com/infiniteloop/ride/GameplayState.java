@@ -43,7 +43,7 @@ public class GameplayState extends ScreenAdapter {
     private BitmapFont font;
 
 
-    public GameplayState(RideGame game) throws InterruptedException {
+    public GameplayState(RideGame game, int Aliens) throws InterruptedException {
         this.game = game;
 
         camera = new OrthographicCamera();
@@ -137,6 +137,7 @@ public class GameplayState extends ScreenAdapter {
         GameplayStage.act();
         //Revisa si hay colisiones por cada vez que se refresca la pantalla.
         CheckIfGameOver();
+        CheckIfStageCleared();
         CheckColisions();
         GameplayStage.draw();
 
@@ -150,6 +151,18 @@ public class GameplayState extends ScreenAdapter {
         }
         if(Gdx.input.isKeyPressed(Input.Keys.D)){
             ship.MoveRight();
+        }
+    }
+
+    public void CheckIfStageCleared(){
+        if(alien.ALIENAMOUNT == 0){
+            Ship.CurrentGas = 100;
+            Ship.CurrentLife = 100;
+            GameplayStage.clear();
+            GameplayStage.dispose();
+            dispose();
+            GraphState.UpdateMovement();
+            game.setScreen(new GraphState(game));
         }
     }
 

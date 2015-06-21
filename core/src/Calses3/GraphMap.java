@@ -18,32 +18,39 @@ package Calses3;
 
 import java.util.ArrayList;
 import java.util.List;
+import static com.infiniteloop.ride.RideGame.*;
 import static com.infiniteloop.ride.Ship.location;
 
 /**
  *
  * @author DiSoJi
  */
-public class Graph {
+public class GraphMap {
     public static GMapa map = new GMapa();
-    public static ArrayList<Wrapper> Paths = new ArrayList();
-    public static Dijkstra dis = new Dijkstra();
+    public ArrayList<Wrapper> Paths = new ArrayList();
+    public Dijkstra dis = new Dijkstra();
     static ArrayList<Gnodo> vertices = new ArrayList();
 
-
-    public static void InitMapGraph() {
-
-        Gnodo A = new Gnodo("A");
-        Gnodo B = new Gnodo("B");
-        Gnodo C = new Gnodo("C");
-        Gnodo D = new Gnodo("D");
-        Gnodo E = new Gnodo("E");
-        Gnodo F = new Gnodo("F");
-        Gnodo G = new Gnodo("G");
-        Gnodo H = new Gnodo("H");
-        Gnodo I = new Gnodo("I");
+    public static Gnodo A = new Gnodo("A");
+    public static Gnodo B = new Gnodo("B");
+    public static Gnodo C = new Gnodo("C");
+    public static Gnodo D = new Gnodo("D");
+    public static Gnodo E = new Gnodo("E");
+    public static Gnodo F = new Gnodo("F");
+    public static Gnodo G = new Gnodo("G");
+    public static Gnodo H = new Gnodo("H");
+    public static Gnodo I = new Gnodo("I");
 
 
+
+    public GraphMap(){}
+
+    public void InitMapGraph() {
+
+        A.visited = false;
+        System.out.println("/////////////////////////////////////////////////////////////////////////");
+        C.visited = false;
+        E.visited = false;
 
         vertices.add(A);
         vertices.add(B);
@@ -58,6 +65,7 @@ public class Graph {
         for (int i = 0; i < map.map.size(); i++) {
             map.map.get(i).foes = 10;
         }
+
         I.adyacencia = new Aristas[]{new Aristas(A, 5), new Aristas(C, 5), new Aristas(E, 5)};
         A.adyacencia = new Aristas[]{new Aristas(B, 10), new Aristas(D, 10), new Aristas(G, 10)};
         B.adyacencia = new Aristas[]{new Aristas(C, 10), new Aristas(H, 10)};
@@ -105,15 +113,12 @@ public class Graph {
     }
 
 
-        //Se comparan los caminos/////////////////////////////
-        //Se crea el arreglo que contendrá las posibles rutas/
-        //Se encuentran las rutas/////////////////////////////
+    public Gnodo findPath(String Objetivo, Gnodo Actual){
 
-    public static Gnodo findPath(String Objetivo, Gnodo Actual){
-        dis.compararCaminos(Actual);
+        Dijkstra.compararCaminos(Actual);
         for (Gnodo Vertice : vertices) {
             System.out.println(Vertice + ": " + Vertice.maximo);
-            List<Gnodo> camino = dis.Ruta(Vertice);
+            List<Gnodo> camino = Dijkstra.Ruta(Vertice);
             System.out.println("Camino: " + camino);
             Wrapper Route = new Wrapper(Vertice.maximo, Vertice, camino);
             Paths.add(Route);
@@ -122,29 +127,22 @@ public class Graph {
         return ShortestPath.ShortestPath(Objetivo, Paths);
     }
 
-    public static void MoveFoes(){
+    public void MoveFoes() {
+
         Movement moveitmoveit = new Movement();
         moveitmoveit.dowork();
+
         for (int i = 0; i < map.map.size(); i++) {
-            System.out.println("Foes antes del moviemiento en; " + map.map.get(i).nombre + "es: " + map.map.get(i).foes);
-            Gnodo ToGo = findPath(location, map.map.get(i));
-            try{
-                System.out.println("Foes antes del moviemiento en; " + ToGo.nombre + "es: " + ToGo.foes);
+            //System.out.println("Foes antes del moviemiento en; " + map.map.get(i).nombre + "es: " + map.map.get(i).foes);
+            Gnodo ToGo = findPath("A", map.map.get(i));
+            //System.out.println("Foes antes del moviemiento en; " + ToGo.nombre + "es: " + ToGo.foes);
+            if (map.map.get(i).foes <= 3 || ToGo.foes >= 15){
+
+            }else {
+                map.map.get(i).decreasefoes();
+                ToGo.increasefoes();
             }
-            catch (Exception e){
-                System.out.println();
-            }
-            map.map.get(i).decreasefoes();
-            ToGo.increasefoes();
+
         }
-
     }
-
-    public static void main(String [] args){
-        InitMapGraph();
-        MoveFoes();
-    }
-        //for (int i=0;i < Paths.size();i++){
-        //   System.out.println("Path: " + Paths.get(i).Path + " Al Nodo: " + Paths.get(i).Nodo.nombre );
-       // }
 }

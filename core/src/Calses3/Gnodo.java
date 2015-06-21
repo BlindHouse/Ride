@@ -30,19 +30,20 @@ public class Gnodo implements Comparable<Gnodo>{
     public double maximo = Double.POSITIVE_INFINITY;
     public Gnodo anterior;
     public int foes;
-    public boolean visited = false;
-    @SuppressWarnings("unchecked")
+    public boolean visited = true;
+    public boolean completed = false;
+
     public ArrayList<Gnodo> siguientes = new ArrayList();
-    
-    public Gnodo(String Nombre){ 
-        this.nombre = Nombre; 
+
+    public Gnodo(String Nombre){
+        this.nombre = Nombre;
     }
-    
+
     @Override
-    public String toString(){ 
-        return this.nombre; 
+    public String toString(){
+        return this.nombre;
     }
-    
+
     @Override
     public int compareTo(Gnodo adyacente){
 
@@ -54,11 +55,11 @@ public class Gnodo implements Comparable<Gnodo>{
     }
     public void increasefoes(){
 
-        this.foes = this.foes + 1;
+            this.foes = this.foes + 1;
     }
     public void decreasefoes(){
 
-        this.foes = this.foes - 1;
+            this.foes = this.foes - 1;
     }
     public boolean wasVisited(){
 
@@ -68,13 +69,26 @@ public class Gnodo implements Comparable<Gnodo>{
 
         this.siguientes.add(Nodo);
     }
-    public boolean isHere(ArrayList<Gnodo> lista){
+    public String Accesible() {
+        if (this.visited == true) {
+            return "";
+
+        } else {
+            if (this.completed == true) {
+                return "";
+            }
+            return "A";
+        }
+    }
+
+    public boolean isHere(ArrayList<String> lista){
         for (int i = 0; i < lista.size();i++){
-            if (lista.get(i).nombre.equals(this.nombre)){
+            if (lista.get(i).equals(this.nombre)){
                 return true;
             }else{}
         }
         return false;
     }
+
 }
     

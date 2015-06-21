@@ -26,9 +26,13 @@ public class getShortestPath {
     
     public Gnodo ShortestPath(String ToGo, ArrayList<Wrapper> Paths){
         Gnodo Path = null;
-        for (int i=0;i < Paths.size();i++){
-            if (ToGo.equals(Paths.get(i).getName())){
-                Path = Paths.get(i).Path.get(1);
+        for (int i=0;i < Paths.size();i++) {
+            if (ToGo.equals(Paths.get(i).getName())) {
+                try {
+                    Path = Paths.get(i).Path.get(0);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 break;
             }
         }

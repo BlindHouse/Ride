@@ -18,7 +18,7 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
  */
 public class MenuState extends ScreenAdapter {
 
-    public RideGame game;
+    public static RideGame game;
     public OrthographicCamera camera;
 
     public static Stage MenuStage;
@@ -62,11 +62,7 @@ public class MenuState extends ScreenAdapter {
         imageTextButton.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                try {
-                    game.setScreen(new GameplayState(game));
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                game.setScreen(new GraphState(game));
                 return super.touchDown(event, x, y, pointer, button);
             }
         });

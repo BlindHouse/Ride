@@ -17,7 +17,7 @@
 package Calses3;
 
 import java.util.Random;
-import static Calses3.Graph.map;
+import static Calses3.GraphMap.map;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -33,31 +33,31 @@ public class Movement {
         Iterator<Gnodo> Iter = map.map.iterator();
         
         while (Iter.hasNext()){
-            System.out.println("Choosing a node to move enemies");
+           // System.out.println("Choosing a node to move enemies");
             Gnodo A = Iter.next();
             if (A.wasVisited()){
-                System.out.println("Yeah, you fucked it, congrats you moron");
+               // System.out.println("Yeah, you fucked it, congrats you moron");
             }else{
-                System.out.println("We keep it");
+               // System.out.println("We keep it");
                 Gnodo Ubicación = A;
                 ArrayList<Gnodo> copy2 = new ArrayList(Ubicación.siguientes);
                 Iterator<Gnodo> iter = copy2.iterator();
                 while (iter.hasNext()){
                     Gnodo GoTo = iter.next();
                     if (GoTo.wasVisited()){
-                        System.out.println("Fuck You, there was someone in here"); 
+                      //  System.out.println("Fuck You, there was someone in here");
                     }else{
                         if (Ubicación.foes <=3){
-                            System.out.print("This Scenario is empty");
+                        //    System.out.print("This Scenario is as filled of nothing as your mom's ass is full of semen");
                         }else{
-                            System.out.println(Ubicación.nombre);
-                            System.out.println(GoTo.nombre);
-                            System.out.println("Normales en GoTo antes del movimiento: " + GoTo.foes);
-                            System.out.println("Normales en Ubicación antes del movimiento: " + Ubicación.foes);
+                          //  System.out.println(Ubicación.nombre);
+                          //  System.out.println(GoTo.nombre);
+                           // System.out.println("Normales en GoTo antes del movimiento: " + GoTo.foes);
+                           // System.out.println("Normales en Ubicación antes del movimiento: " + Ubicación.foes);
                             GoTo.increasefoes();
                             Ubicación.decreasefoes();
-                            System.out.println("Normales en GoTo despues del movimiento: " + GoTo.foes);
-                            System.out.println("Normales en Ubicación despues del movimiento: " + Ubicación.foes);
+                          //  System.out.println("Normales en GoTo despues del movimiento: " + GoTo.foes);
+                           // System.out.println("Normales en Ubicación despues del movimiento: " + Ubicación.foes);
                         }
                     }
                 }

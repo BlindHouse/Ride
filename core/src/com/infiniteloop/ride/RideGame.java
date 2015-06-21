@@ -1,22 +1,24 @@
 package com.infiniteloop.ride;
 
-import com.badlogic.gdx.ApplicationAdapter;
+import Calses3.Gnodo;
+import Calses3.GraphMap;
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class RideGame extends Game {
 
 	public static int WIDHT = 300;
 	public static int HEIGHT = 480;
-	
+
+	public static GraphMap Map = new GraphMap();
+
 	@Override
 	public void create () {
+		Map.InitMapGraph();
 		Assets.load();
-		setScreen(new GraphState(this));
+		setScreen(new MenuState(this));
 	}
+
+
 
 	@Override
 	public void dispose () {
