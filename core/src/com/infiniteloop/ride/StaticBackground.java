@@ -17,11 +17,6 @@ public class StaticBackground extends Actor {
             setWidth(300);
             setHeight(960 / 2);
         }
-        if(x == 3){
-            textureRegion = new TextureRegion(Assets.winbackground);
-            setWidth(300);
-            setHeight(960 / 2);
-        }
         else{
             textureRegion = new TextureRegion(Assets.gameoverbackground);
             setWidth(300);
