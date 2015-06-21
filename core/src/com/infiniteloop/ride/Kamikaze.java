@@ -81,7 +81,7 @@ public class Kamikaze extends Actor{
     public void DeadRise(){
         if (KAMIKAZEAMOUNT != 0){
             KamikazeLifePoints = MathUtils.random(1,2);
-            setPosition(MathUtils.random(32, RideGame.WIDHT),
+            setPosition(MathUtils.random(32, RideGame.WIDHT - 16),
                     RideGame.HEIGHT + MathUtils.random(400,700), Align.center);
             state = State.alive;
         }

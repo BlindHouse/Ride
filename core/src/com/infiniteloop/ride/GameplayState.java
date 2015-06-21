@@ -120,10 +120,16 @@ public class GameplayState extends ScreenAdapter {
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
                 //ship.Jump();
                 shot = new Shot(200f);
-                shot.setPosition(ship.getX(Align.center), ship.getY(Align.top), Align.bottom);
-                GameplayStage.addActor(shot);
-                ShotQueue.add(shot);
+
+                if (ShotQueue.size() >= 3){
+                    return false;
+                }else{
+
+                    shot.setPosition(ship.getX(Align.center), ship.getY(Align.top), Align.bottom);
+                    GameplayStage.addActor(shot);
+                    ShotQueue.add(shot);
                 return true;
+                }
             }
         });
     }
