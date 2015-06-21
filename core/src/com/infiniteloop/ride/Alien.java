@@ -115,7 +115,7 @@ public class Alien extends Actor{
     public void DeadRise(){
         if (ALIENAMOUNT != 0){
             AlienLifePoints = MathUtils.random(1,4);
-            setPosition(MathUtils.random(32, RideGame.WIDHT),
+            setPosition(MathUtils.random(32, RideGame.WIDHT - 32),
                     RideGame.HEIGHT + MathUtils.random(35,170), Align.center);
             state = State.alive;
         }
