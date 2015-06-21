@@ -482,9 +482,6 @@ public class GraphState extends ScreenAdapter {
         Gdx.input.setInputProcessor(GraphStage);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         GraphStage.act();
-
-        CheckIfGraphDone();
-
         //Revisa si hay colisiones por cada vez que se refresca la pantalla.
         GraphStage.draw();
 
