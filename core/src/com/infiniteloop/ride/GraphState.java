@@ -141,6 +141,9 @@ public class GraphState extends ScreenAdapter {
                 return;
             }else{}
         }
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        GraphStage.clear();
+        GraphStage.dispose();
         game.setScreen(new WinState(game));
         System.out.println("No hay más Paths a recorrer");
     }
