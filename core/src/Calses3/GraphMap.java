@@ -127,14 +127,14 @@ public class GraphMap {
         return ShortestPath.ShortestPath(Objetivo, Paths);
     }
 
-    public void MoveFoes() {
+    public void MoveFoes(String PlayerUbication) {
 
         Movement moveitmoveit = new Movement();
         moveitmoveit.dowork();
 
         for (int i = 0; i < map.map.size(); i++) {
             //System.out.println("Foes antes del moviemiento en; " + map.map.get(i).nombre + "es: " + map.map.get(i).foes);
-            Gnodo ToGo = findPath("A", map.map.get(i));
+            Gnodo ToGo = findPath(PlayerUbication, map.map.get(i));
             //System.out.println("Foes antes del moviemiento en; " + ToGo.nombre + "es: " + ToGo.foes);
             if (map.map.get(i).foes <= 3 || ToGo.foes >= 15){
 

@@ -151,7 +151,7 @@ public class GraphState extends ScreenAdapter {
         Nodo1.addListener(new InputListener() {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 if(Nodo1.getText().toString().startsWith("A")){
-                    Map.MoveFoes();
+                    Map.MoveFoes("A");
                     GraphMap.A.visited = true;
                     System.out.println( " Nodo A :: " + GraphMap.A.visited);
                     GraphMap.B.visited = false;
@@ -183,7 +183,7 @@ public class GraphState extends ScreenAdapter {
                 if(Nodo2.getText().toString().startsWith("A")){
 
 
-                    Map.MoveFoes();
+                    Map.MoveFoes("B");
                     GraphMap.A.visited = true;
                     System.out.println( " Nodo A :: " + GraphMap.A.visited);
                     GraphMap.B.visited = true;
@@ -223,7 +223,7 @@ public class GraphState extends ScreenAdapter {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 if(Nodo3.getText().toString().startsWith("A")){
 
-                    Map.MoveFoes();
+                    Map.MoveFoes("C");
                     GraphMap.A.visited = true;
                     System.out.println( " Nodo A :: " + GraphMap.A.visited);
                     GraphMap.B.visited = true;
@@ -264,7 +264,7 @@ public class GraphState extends ScreenAdapter {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 if(Nodo4.getText().toString().startsWith("A")){
 
-                    Map.MoveFoes();
+                    Map.MoveFoes("D");
                     GraphMap.A.visited = true;
                     System.out.println( " Nodo A :: " + GraphMap.A.visited);
                     GraphMap.B.visited = false;
@@ -305,7 +305,7 @@ public class GraphState extends ScreenAdapter {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 if(Nodo5.getText().toString().startsWith("A")){
 
-                    Map.MoveFoes();
+                    Map.MoveFoes("E");
                     GraphMap.A.visited = true;
                     System.out.println( " Nodo A :: " + GraphMap.A.visited);
                     GraphMap.B.visited = true;
@@ -345,7 +345,7 @@ public class GraphState extends ScreenAdapter {
         Nodo6.addListener(new InputListener() {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 if(Nodo6.getText().toString().startsWith("A")){
-                    Map.MoveFoes();
+                    Map.MoveFoes("F");
 
                     GraphMap.A.visited = false;
                     System.out.println( " Nodo A :: " + GraphMap.A.visited);
@@ -387,7 +387,7 @@ public class GraphState extends ScreenAdapter {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 if(Nodo7.getText().toString().startsWith("A")){
 
-                    Map.MoveFoes();
+                    Map.MoveFoes("G");
                     GraphMap.A.visited = true;
                     System.out.println( " Nodo A :: " + GraphMap.A.visited);
                     GraphMap.B.visited = false;
@@ -428,7 +428,7 @@ public class GraphState extends ScreenAdapter {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 if(Nodo8.getText().toString().startsWith("A")){
 
-                    Map.MoveFoes();
+                    Map.MoveFoes("H");
                     GraphMap.A.visited = false;
                     System.out.println( " Nodo A :: " + GraphMap.A.visited);
                     GraphMap.B.visited = true;

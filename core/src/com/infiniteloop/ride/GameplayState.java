@@ -204,6 +204,7 @@ public class GameplayState extends ScreenAdapter {
                             ShotQueue.get(i).clear();
                             ShotQueue.get(i).setShotPerimeter(new Rectangle(0, 0, -30, -30));
                             alien.HitTaken();
+                            ShotQueue.remove(i);
                         }
                     }
                 }
@@ -235,6 +236,8 @@ public class GameplayState extends ScreenAdapter {
                             ShotQueue.get(i).clear();
                             ShotQueue.get(i).setShotPerimeter(new Rectangle(0, 0, -30, -30));
                             kamikaze.HitTaken();
+                            ShotQueue.remove(i);
+
                         }
                     }
                 }
@@ -267,6 +270,8 @@ public class GameplayState extends ScreenAdapter {
                             ShotQueue.get(i).clear();
                             ShotQueue.get(i).setShotPerimeter(new Rectangle(0, 0, -30, -30));
                             bridge.HitTaken();
+                            ShotQueue.remove(i);
+
                         }
                     }
                 }
@@ -290,6 +295,18 @@ public class GameplayState extends ScreenAdapter {
             if(ship != null){
                 if(gas.getGasPerimeter().overlaps(ship.getShipPerimeter())){
                     gas.HitTaken();
+                }
+            }
+        }
+        if (shot!= null){
+            if (!ShotQueue.isEmpty()){
+                for (int i = 0;i < ShotQueue.size();i++){
+                    if (ShotQueue.get(i).IsAboveTop()){
+                        ShotQueue.get(i).remove();
+                        ShotQueue.get(i).clear();
+                        ShotQueue.get(i).setShotPerimeter(new Rectangle(0, 0, -30, -30));
+                        ShotQueue.remove(i);
+                    }else{}
                 }
             }
         }

@@ -114,7 +114,7 @@ public class Shot extends Actor {
         }
     }
 
-    private boolean IsAboveTop(){
+    public boolean IsAboveTop(){
 
         return getY(Align.bottom) > RideGame.HEIGHT;
     }
