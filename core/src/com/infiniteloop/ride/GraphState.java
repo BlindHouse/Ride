@@ -135,17 +135,16 @@ public class GraphState extends ScreenAdapter {
         Labels.add(Nodo6);
         Labels.add(Nodo7);
         Labels.add(Nodo8);
+    }
+
+    private boolean CheckWin() {
         for (int i = 0;i < Labels.size();i++){
             System.out.println(Labels.get(i).getText().toString());
             if (Labels.get(i).getText().toString().startsWith("A")){
-                return;
+                return false;
             }else{}
         }
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        GraphStage.clear();
-        GraphStage.dispose();
-        game.setScreen(new WinState(game));
-        System.out.println("No hay más Paths a recorrer");
+        return true;
     }
 
     private void InitInputProcessor() {
@@ -468,12 +467,24 @@ public class GraphState extends ScreenAdapter {
         });
     }
 
+    public void CheckIfGraphDone(){
+        if(CheckWin()){
+            GraphStage.clear();
+            GraphStage.dispose();
+            dispose();
+            game.setScreen(new WinState(game));
+        }
+    }
+
     @Override
     //RENDER DE PANTALLA --- LOOP DE RENDERIZADO POR FPS.
     public void render(float delta) {
         Gdx.input.setInputProcessor(GraphStage);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         GraphStage.act();
+
+        CheckIfGraphDone();
+
         //Revisa si hay colisiones por cada vez que se refresca la pantalla.
         GraphStage.draw();
 
