@@ -26,7 +26,7 @@ import java.util.ArrayList;
  */
 public class GraphState extends ScreenAdapter {
 
-    public RideGame game;
+    public static RideGame game;
     public OrthographicCamera camera;
 
     public static Stage GraphStage;
@@ -141,7 +141,7 @@ public class GraphState extends ScreenAdapter {
                 return;
             }else{}
         }
-        //todo se pone la funcion que inría cuando no hay más paths
+        game.setScreen(new WinState(game));
         System.out.println("No hay más Paths a recorrer");
     }
 

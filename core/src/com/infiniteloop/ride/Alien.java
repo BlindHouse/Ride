@@ -199,7 +199,7 @@ public class Alien extends Actor{
 
         if(IsInShootingPosition()){
             AlienFire();
-            Ship.CurrentGas = Ship.CurrentGas - 3;
+            Ship.CurrentGas = Ship.CurrentGas - 1;
             GameplayState.label.setText("Life : " + Ship.CurrentLife + "  " + "Gas : " + Ship.CurrentGas + "  "
                     + "Score : " + Ship.CurrentScore);
             if(Ship.CurrentGas <= 0){

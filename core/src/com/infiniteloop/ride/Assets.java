@@ -32,6 +32,7 @@ public class Assets {
     public static TextureRegion gameoverbackground;
     public static TextureRegion gobackbutton;
     public static TextureRegion graph;
+    public static TextureRegion winbackground;
 
     public static void load(){
         atlas = new TextureAtlas("pack.atlas");
@@ -53,6 +54,7 @@ public class Assets {
         gameoverbackground = atlas.findRegion("gameoverbackground");
         gobackbutton = atlas.findRegion("goback");
         graph = atlas.findRegion("graph");
+        winbackground = atlas.findRegion("winbackground");
 
 
     }

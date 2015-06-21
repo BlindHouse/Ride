@@ -46,13 +46,6 @@ gas
   orig: 25, 25
   offset: 0, 0
   index: -1
-goback
-  rotate: false
-  xy: 626, 439
-  size: 300, 100
-  orig: 300, 100
-  offset: 0, 0
-  index: -1
 graph
   rotate: false
   xy: 626, 541
@@ -62,7 +55,7 @@ graph
   index: -1
 health
   rotate: false
-  xy: 626, 142
+  xy: 928, 830
   size: 25, 25
   orig: 25, 25
   offset: 0, 0
@@ -74,30 +67,16 @@ menubackground
   orig: 300, 480
   offset: 0, 0
   index: -1
-name
-  rotate: false
-  xy: 626, 337
-  size: 300, 100
-  orig: 300, 100
-  offset: 0, 0
-  index: -1
-playbutton
-  rotate: false
-  xy: 626, 235
-  size: 300, 100
-  orig: 300, 100
-  offset: 0, 0
-  index: -1
 ship
   rotate: false
-  xy: 626, 169
+  xy: 928, 891
   size: 64, 64
   orig: 64, 64
   offset: 0, 0
   index: -1
 shot
   rotate: false
-  xy: 692, 218
+  xy: 962, 874
   size: 4, 15
   orig: 4, 15
   offset: 0, 0
@@ -111,8 +90,42 @@ spacebackground
   index: -1
 tinyalien
   rotate: false
-  xy: 928, 923
+  xy: 928, 857
   size: 32, 32
   orig: 32, 32
+  offset: 0, 0
+  index: -1
+winbackground
+  rotate: false
+  xy: 626, 59
+  size: 300, 480
+  orig: 300, 480
+  offset: 0, 0
+  index: -1
+
+pack2.png
+size: 1024,128
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+goback
+  rotate: false
+  xy: 2, 2
+  size: 300, 100
+  orig: 300, 100
+  offset: 0, 0
+  index: -1
+name
+  rotate: false
+  xy: 304, 2
+  size: 300, 100
+  orig: 300, 100
+  offset: 0, 0
+  index: -1
+playbutton
+  rotate: false
+  xy: 606, 2
+  size: 300, 100
+  orig: 300, 100
   offset: 0, 0
   index: -1
